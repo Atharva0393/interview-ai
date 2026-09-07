@@ -20,9 +20,9 @@ export default function InterviewSessionPage() {
   const router = useRouter();
 
   // Navigation & Question State
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(2); // Start at Q3 (as in prompt example) or Q1
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // Start at Question 1
   const [isPaused, setIsPaused] = useState(false);
-  const [timerSeconds, setTimerSeconds] = useState(1122); // 18:42 countdown (as in prompt example)
+  const [timerSeconds, setTimerSeconds] = useState(1200); // 20:00 countdown
   const [isEndModalOpen, setIsEndModalOpen] = useState(false);
 
   // Fluctuating Telemetry State
@@ -164,20 +164,20 @@ export default function InterviewSessionPage() {
 
         {/* Interview Paused Overlay Banner */}
         {isPaused && (
-          <div className="fixed inset-0 z-40 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="p-6 rounded-3xl bg-[#111827] border border-amber-500/30 text-center space-y-4 shadow-2xl max-w-sm w-full animate-in zoom-in-95 duration-200">
-              <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mx-auto">
+          <div className="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200">
+            <div className="p-6 rounded-3xl bg-white border border-[#e5e3de] text-center space-y-4 shadow-xl max-w-sm w-full">
+              <div className="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200 text-amber-600 flex items-center justify-center mx-auto">
                 <Pause className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <h3 className="text-lg font-bold text-white">Interview Paused</h3>
-                <p className="text-xs text-slate-400">
-                  Timer and telemetry analysis are paused. Click resume when ready.
+                <h3 className="text-lg font-extrabold text-slate-900">Interview Paused</h3>
+                <p className="text-xs text-slate-500 font-normal">
+                  Timer and telemetry analysis are paused. Click resume when ready to continue.
                 </p>
               </div>
               <button
                 onClick={() => setIsPaused(false)}
-                className="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all shadow-md shadow-blue-500/20 flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:outline-none"
               >
                 <Play className="w-4 h-4 fill-current" />
                 <span>Resume Interview</span>
