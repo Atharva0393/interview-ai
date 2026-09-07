@@ -164,22 +164,22 @@ export default function InterviewSessionPage() {
 
         {/* Interview Paused Overlay Banner */}
         {isPaused && (
-          <div className="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200">
-            <div className="p-6 rounded-3xl bg-white border border-[#e5e3de] text-center space-y-4 shadow-xl max-w-sm w-full">
-              <div className="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200 text-amber-600 flex items-center justify-center mx-auto">
+          <div className="fixed inset-0 z-40 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200">
+            <div className="p-6 rounded-3xl bg-[#121212] border border-white/10 text-center space-y-4 shadow-2xl max-w-sm w-full text-white">
+              <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/15 text-stone-200 flex items-center justify-center mx-auto">
                 <Pause className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <h3 className="text-lg font-extrabold text-slate-900">Interview Paused</h3>
-                <p className="text-xs text-slate-500 font-normal">
+                <h3 className="text-lg font-extrabold text-white">Interview Paused</h3>
+                <p className="text-xs text-stone-300 font-normal">
                   Timer and telemetry analysis are paused. Click resume when ready to continue.
                 </p>
               </div>
               <button
                 onClick={() => setIsPaused(false)}
-                className="w-full py-3 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:outline-none"
+                className="w-full py-3 rounded-xl bg-white hover:bg-stone-200 text-black text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
               >
-                <Play className="w-4 h-4 fill-current" />
+                <Play className="w-4 h-4 fill-current text-black" />
                 <span>Resume Interview</span>
               </button>
             </div>

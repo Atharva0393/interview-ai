@@ -121,10 +121,10 @@ export default function ResumePage() {
     <AppShell>
       <div className="space-y-8 max-w-7xl mx-auto animate-in fade-in duration-300">
         {/* Top Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#e5e3de] pb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-200 pb-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 border border-violet-100 text-xs font-semibold text-violet-800 mb-2">
-              <Sparkles className="w-3.5 h-3.5 text-violet-600" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 text-white text-xs font-semibold mb-2">
+              <Sparkles className="w-3.5 h-3.5 fill-current text-stone-200" />
               <span>Step 1: Resume Analysis & Profile Setup</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -136,7 +136,7 @@ export default function ResumePage() {
           </div>
 
           {/* Quick Action Info Badge */}
-          <div className="flex items-center gap-3 bg-white border border-[#e5e3de] px-4 py-2.5 rounded-xl shrink-0 shadow-2xs">
+          <div className="flex items-center gap-3 bg-white border border-stone-200 px-4 py-2.5 rounded-xl shrink-0 shadow-2xs">
             <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
             <div className="text-xs">
               <span className="text-slate-500 font-medium">Profile Readiness: </span>
@@ -158,11 +158,11 @@ export default function ResumePage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* LEFT SECTION — RESUME UPLOAD (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 rounded-2xl bg-white border border-[#e5e3de] shadow-2xs flex flex-col justify-between h-full space-y-6">
+            <div className="p-6 rounded-2xl bg-white border border-stone-200/80 shadow-2xs flex flex-col justify-between h-full space-y-6">
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
-                    <FileText className="w-4 h-4 text-violet-600" />
+                    <FileText className="w-4 h-4 text-slate-900" />
                     Resume Document
                   </h2>
                   <span className="text-[11px] font-semibold text-slate-500 bg-stone-100 px-2.5 py-1 rounded-md border border-stone-200">
@@ -172,24 +172,24 @@ export default function ResumePage() {
 
                 {/* Simulated Analysis Loading State */}
                 {isAnalyzing ? (
-                  <div className="p-8 rounded-2xl border border-violet-200 bg-violet-50/50 text-center space-y-6 animate-pulse">
-                    <div className="w-14 h-14 rounded-2xl bg-violet-600 p-0.5 mx-auto flex items-center justify-center shadow-xs">
-                      <div className="w-full h-full rounded-[14px] bg-white flex items-center justify-center">
-                        <Cpu className="w-7 h-7 text-violet-600 animate-spin" />
+                  <div className="p-8 rounded-2xl border border-stone-300 bg-stone-50 text-center space-y-6 animate-pulse">
+                    <div className="w-14 h-14 rounded-2xl bg-slate-900 p-0.5 mx-auto flex items-center justify-center shadow-xs">
+                      <div className="w-full h-full rounded-[14px] bg-[#121212] flex items-center justify-center">
+                        <Cpu className="w-7 h-7 text-white animate-spin" />
                       </div>
                     </div>
 
                     <div className="space-y-2">
                       <h3 className="text-sm font-bold text-slate-900">Analyzing Resume Content...</h3>
-                      <p className="text-xs text-violet-700 font-mono">
+                      <p className="text-xs text-slate-700 font-mono">
                         {analysisSteps[analysisStep]}
                       </p>
                     </div>
 
                     {/* Progress Bar */}
-                    <div className="w-full h-2 bg-stone-200 rounded-full overflow-hidden p-0.5 border border-violet-100">
+                    <div className="w-full h-2 bg-stone-200 rounded-full overflow-hidden p-0.5 border border-stone-300">
                       <div
-                        className="h-full bg-violet-600 rounded-full transition-all duration-300"
+                        className="h-full bg-slate-900 rounded-full transition-all duration-300"
                         style={{
                           width: `${((analysisStep + 1) / analysisSteps.length) * 100}%`,
                         }}
@@ -205,16 +205,16 @@ export default function ResumePage() {
                     onClick={() => fileInputRef.current?.click()}
                     className={`border-2 border-dashed rounded-2xl p-8 text-center transition-all duration-200 cursor-pointer group flex flex-col items-center justify-center space-y-4 ${
                       isDragging
-                        ? "border-violet-600 bg-violet-50 shadow-xs scale-[1.01]"
-                        : "border-stone-300 hover:border-violet-400 bg-stone-50/50 hover:bg-stone-50"
+                        ? "border-slate-900 bg-stone-100 shadow-xs scale-[1.01]"
+                        : "border-stone-300 hover:border-slate-400 bg-stone-50/50 hover:bg-stone-50"
                     }`}
                   >
-                    <div className="w-14 h-14 rounded-2xl bg-violet-50 border border-violet-100 flex items-center justify-center text-violet-600 group-hover:scale-110 transition-transform">
+                    <div className="w-14 h-14 rounded-2xl bg-slate-900 text-white flex items-center justify-center group-hover:scale-105 transition-transform">
                       <UploadCloud className="w-7 h-7" />
                     </div>
 
                     <div className="space-y-1">
-                      <p className="text-sm font-bold text-slate-900 group-hover:text-violet-700 transition-colors">
+                      <p className="text-sm font-bold text-slate-900 group-hover:text-black transition-colors">
                         Drag and drop your resume file here
                       </p>
                       <p className="text-xs text-slate-500">or click to browse files from computer</p>
@@ -222,7 +222,7 @@ export default function ResumePage() {
 
                     <button
                       type="button"
-                      className="px-4 py-2 rounded-xl bg-violet-50 hover:bg-violet-100 text-violet-700 border border-violet-200 text-xs font-bold transition-colors cursor-pointer"
+                      className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-bold transition-colors cursor-pointer"
                     >
                       Browse Files
                     </button>
@@ -233,10 +233,10 @@ export default function ResumePage() {
                   </div>
                 ) : (
                   /* File Uploaded Success State */
-                  <div className="p-5 rounded-2xl bg-stone-50/60 border border-stone-200 space-y-4 shadow-2xs">
+                  <div className="p-5 rounded-2xl bg-stone-50 border border-stone-200 space-y-4 shadow-2xs">
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex items-center gap-3.5">
-                        <div className="w-12 h-12 rounded-xl bg-violet-50 border border-violet-200 flex items-center justify-center text-violet-700 shrink-0">
+                        <div className="w-12 h-12 rounded-xl bg-slate-900 text-white flex items-center justify-center shrink-0">
                           <FileCheck className="w-6 h-6" />
                         </div>
                         <div>
@@ -271,7 +271,7 @@ export default function ResumePage() {
                         onClick={() => fileInputRef.current?.click()}
                         className="flex-1 px-3 py-2 rounded-xl bg-white hover:bg-stone-100 text-slate-700 text-xs font-bold border border-stone-200 transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
                       >
-                        <RefreshCw className="w-3.5 h-3.5 text-violet-600" />
+                        <RefreshCw className="w-3.5 h-3.5 text-slate-900" />
                         <span>Replace</span>
                       </button>
 
@@ -291,7 +291,7 @@ export default function ResumePage() {
               <div className="p-5 rounded-2xl bg-stone-50 border border-stone-200 space-y-3">
                 <div className="flex items-center justify-between text-xs font-bold">
                   <span className="text-slate-800 flex items-center gap-1.5">
-                    <Target className="w-4 h-4 text-violet-600" />
+                    <Target className="w-4 h-4 text-slate-900" />
                     Profile Completeness
                   </span>
                   <span className={isUploaded ? "text-emerald-700 font-extrabold" : "text-amber-700 font-extrabold"}>
@@ -300,10 +300,10 @@ export default function ResumePage() {
                 </div>
 
                 {/* Progress Bar */}
-                <div className="w-full h-2.5 bg-stone-200 rounded-full overflow-hidden p-0.5 border border-stone-300/60">
+                <div className="w-full h-2.5 bg-stone-200 rounded-full overflow-hidden p-0.5 border border-stone-300">
                   <div
                     className={`h-full rounded-full transition-all duration-500 ${
-                      isUploaded ? "bg-gradient-to-r from-violet-600 to-emerald-500" : "bg-amber-500"
+                      isUploaded ? "bg-slate-900" : "bg-amber-500"
                     }`}
                     style={{ width: isUploaded ? "85%" : "40%" }}
                   />
@@ -321,10 +321,10 @@ export default function ResumePage() {
           {/* RIGHT SECTION — AI RESUME INSIGHTS (7 cols) */}
           <div className="lg:col-span-7 space-y-6">
             {/* AI Profile Summary Card */}
-            <div className="p-6 rounded-2xl bg-white border border-[#e5e3de] shadow-2xs space-y-6">
+            <div className="p-6 rounded-2xl bg-white border border-stone-200/80 shadow-2xs space-y-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
-                  <div className="p-2 rounded-xl bg-violet-50 text-violet-700 border border-violet-100">
+                  <div className="p-2 rounded-xl bg-slate-900 text-white">
                     <Zap className="w-4 h-4" />
                   </div>
                   <div>
@@ -333,7 +333,7 @@ export default function ResumePage() {
                   </div>
                 </div>
 
-                <span className="px-3 py-1 rounded-full bg-violet-50 text-violet-800 border border-violet-200 text-xs font-bold">
+                <span className="px-3 py-1 rounded-full bg-stone-100 text-slate-900 border border-stone-300 text-xs font-bold">
                   Fresher Candidate
                 </span>
               </div>
@@ -351,7 +351,7 @@ export default function ResumePage() {
                   <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
                     Target Role
                   </span>
-                  <span className="text-sm font-extrabold text-violet-700">Frontend Developer</span>
+                  <span className="text-sm font-extrabold text-slate-900">Frontend Developer</span>
                 </div>
 
                 <div className="p-4 rounded-xl bg-stone-50 border border-stone-200 space-y-1">
@@ -366,13 +366,13 @@ export default function ResumePage() {
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <h3 className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
-                    <Code className="w-3.5 h-3.5 text-violet-600" />
+                    <Code className="w-3.5 h-3.5 text-slate-900" />
                     Core Technical Skills ({skills.length})
                   </h3>
 
                   <button
                     onClick={() => setShowAddSkill(!showAddSkill)}
-                    className="text-[11px] font-bold text-violet-700 hover:text-violet-800 flex items-center gap-1 transition-colors cursor-pointer"
+                    className="text-[11px] font-bold text-slate-900 hover:text-black flex items-center gap-1 transition-colors cursor-pointer"
                   >
                     <Plus className="w-3 h-3" />
                     <span>Add Skill</span>
@@ -392,7 +392,7 @@ export default function ResumePage() {
                     />
                     <button
                       onClick={handleAddSkill}
-                      className="px-3 py-1 rounded-lg bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold cursor-pointer"
+                      className="px-3 py-1 rounded-lg bg-slate-900 hover:bg-black text-white text-xs font-bold cursor-pointer"
                     >
                       Add
                     </button>
@@ -410,9 +410,9 @@ export default function ResumePage() {
                   {skills.map((skill) => (
                     <span
                       key={skill}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-violet-50 text-violet-800 border border-violet-200 text-xs font-semibold group hover:border-violet-400 transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-stone-100 text-slate-900 border border-stone-300 text-xs font-semibold group hover:border-slate-500 transition-colors"
                     >
-                      <CheckCircle2 className="w-3 h-3 text-violet-600" />
+                      <CheckCircle2 className="w-3 h-3 text-slate-900" />
                       <span>{skill}</span>
                       <button
                         onClick={() => handleRemoveSkill(skill)}
@@ -429,7 +429,7 @@ export default function ResumePage() {
               {/* Projects Experience */}
               <div className="space-y-3">
                 <h3 className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
-                  <FolderGit2 className="w-3.5 h-3.5 text-violet-600" />
+                  <FolderGit2 className="w-3.5 h-3.5 text-slate-900" />
                   Key Projects Extracted
                 </h3>
 
@@ -441,24 +441,24 @@ export default function ResumePage() {
                   ].map((proj) => (
                     <div
                       key={proj.name}
-                      className="p-3.5 rounded-xl bg-stone-50/70 border border-stone-200 space-y-1 hover:border-violet-300 transition-colors"
+                      className="p-3.5 rounded-xl bg-stone-50 border border-stone-200 space-y-1 hover:border-slate-400 transition-colors"
                     >
                       <div className="text-xs font-bold text-slate-900">{proj.name}</div>
                       <p className="text-[11px] text-slate-500 leading-tight font-normal">{proj.desc}</p>
-                      <div className="text-[10px] font-mono text-violet-700 pt-1 font-bold">{proj.tech}</div>
+                      <div className="text-[10px] font-mono text-slate-700 pt-1 font-bold">{proj.tech}</div>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* AI Extracted Insights */}
-              <div className="p-4 rounded-xl bg-violet-50/50 border border-violet-100 space-y-3">
+              <div className="p-4 rounded-xl bg-stone-50 border border-stone-200 space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-violet-600" />
+                    <Sparkles className="w-3.5 h-3.5 text-slate-900 fill-current" />
                     AI Extracted Insights & Calibration
                   </span>
-                  <span className="px-2.5 py-0.5 text-[10px] font-extrabold bg-violet-100 text-violet-800 border border-violet-200 rounded-md">
+                  <span className="px-2.5 py-0.5 text-[10px] font-extrabold bg-slate-900 text-white rounded-md">
                     Suggested Difficulty: Intermediate
                   </span>
                 </div>
@@ -489,7 +489,7 @@ export default function ResumePage() {
         </div>
 
         {/* Primary Action CTA Footer */}
-        <div className="p-6 rounded-2xl bg-white border border-[#e5e3de] flex flex-col sm:flex-row items-center justify-between gap-4 shadow-2xs">
+        <div className="p-6 rounded-2xl bg-white border border-stone-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-2xs">
           <div className="space-y-1">
             <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-emerald-600" />
@@ -502,7 +502,7 @@ export default function ResumePage() {
 
           <Link
             href="/interview/setup"
-            className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold shadow-xs hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-bold shadow-xs hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
           >
             <span>Continue to Interview Setup</span>
             <ArrowRight className="w-4 h-4" />

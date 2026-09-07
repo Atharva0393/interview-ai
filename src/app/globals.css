@@ -2,29 +2,30 @@
 
 @layer base {
   :root {
-    --bg-main: #f9f8f6;
+    --bg-outer: #121212;
+    --bg-canvas: #f5f4f1;
     --bg-surface: #ffffff;
-    --bg-card: #ffffff;
-    --bg-sidebar: #f4f3ef;
-    
-    --border-subtle: #e5e3de;
-    --border-accent: #d4d0c7;
-    
-    --text-primary: #111827;
-    --text-secondary: #4b5563;
-    --text-muted: #6b7280;
-    
-    --accent-violet: #7c3aed;
-    --accent-violet-hover: #6d28d9;
-    --accent-violet-light: #f5f3ff;
-    
-    --accent-emerald: #10b981;
-    --accent-amber: #f59e0b;
+    --bg-surface-subtle: #ebe9e4;
+    --bg-sidebar: #171717;
+
+    --border-subtle: rgba(0, 0, 0, 0.07);
+    --border-dark: rgba(255, 255, 255, 0.08);
+
+    --text-primary: #171717;
+    --text-secondary: #66645f;
+    --text-muted: #96938d;
+
+    --text-on-dark: #f5f4f1;
+    --text-on-dark-muted: #a3a19b;
+
+    --accent-dark: #111111;
+    --accent-emerald: #059669;
+    --accent-emerald-light: #ecfdf5;
   }
 }
 
 body {
-  background-color: var(--bg-main);
+  background-color: var(--bg-outer);
   color: var(--text-primary);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   min-height: 100vh;
@@ -38,22 +39,22 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f9f8f6;
+  background: var(--bg-outer);
 }
 ::-webkit-scrollbar-thumb {
-  background: #d4d0c7;
+  background: #333333;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #a8a29e;
+  background: #555555;
 }
 
-/* Soft surface card styling */
+/* Premium Monochrome Surface Card Styling */
 .soft-card {
   background-color: #ffffff;
-  border: 1px solid #e5e3de;
-  border-radius: 1rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.015);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
 .soft-card-hover {
@@ -61,33 +62,27 @@ body {
 }
 
 .soft-card-hover:hover {
-  border-color: #c4b5fd;
-  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.06), 0 1px 4px rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.03);
   transform: translateY(-1px);
 }
 
-/* Clean Editorial Text Gradient */
+/* Clean Editorial Text Styling */
 .text-gradient-primary {
-  background: linear-gradient(135deg, #111827 0%, #4b5563 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #171717;
 }
 
 .text-gradient-violet {
-  background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #111111;
 }
 
-/* Pulse animation for AI signals */
+/* Restrained pulse animation */
 @keyframes pulseGlow {
   0%, 100% {
     opacity: 1;
-    transform: scale(1);
   }
   50% {
-    opacity: 0.75;
-    transform: scale(1.04);
+    opacity: 0.6;
   }
 }
 

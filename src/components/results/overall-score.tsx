@@ -19,7 +19,7 @@ export function OverallScore() {
   }, []);
 
   return (
-    <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#e5e3de] shadow-2xs space-y-6">
+    <div className="p-6 sm:p-8 rounded-3xl bg-white border border-stone-200/80 shadow-2xs space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         {/* Left Hero Content */}
         <div className="space-y-3 max-w-xl">
@@ -37,13 +37,13 @@ export function OverallScore() {
           </p>
 
           <div className="pt-2 flex flex-wrap gap-2 text-xs font-bold">
-            <span className="px-3 py-1.5 rounded-xl bg-violet-50 text-violet-800 border border-violet-100">
+            <span className="px-3 py-1.5 rounded-xl bg-stone-100 text-slate-900 border border-stone-200">
               Technical: <strong className="text-slate-900">88%</strong>
             </span>
-            <span className="px-3 py-1.5 rounded-xl bg-violet-50 text-violet-800 border border-violet-100">
+            <span className="px-3 py-1.5 rounded-xl bg-stone-100 text-slate-900 border border-stone-200">
               Communication: <strong className="text-slate-900">84%</strong>
             </span>
-            <span className="px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-100">
+            <span className="px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200">
               Confidence: <strong className="text-slate-900">81%</strong>
             </span>
             <span className="px-3 py-1.5 rounded-xl bg-stone-100 text-slate-800 border border-stone-200">
@@ -69,7 +69,7 @@ export function OverallScore() {
                 cx="50"
                 cy="50"
                 r="42"
-                stroke="url(#scoreGradientLight)"
+                stroke="#111111"
                 strokeWidth="8"
                 fill="transparent"
                 strokeDasharray="264"
@@ -77,12 +77,6 @@ export function OverallScore() {
                 strokeLinecap="round"
                 className="transition-all duration-300 ease-out"
               />
-              <defs>
-                <linearGradient id="scoreGradientLight" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#7c3aed" />
-                  <stop offset="100%" stopColor="#10b981" />
-                </linearGradient>
-              </defs>
             </svg>
 
             {/* Score Number Display */}

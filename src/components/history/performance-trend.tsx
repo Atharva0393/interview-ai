@@ -15,11 +15,11 @@ import { MOCK_TREND_DATA } from "./history-mock-data";
 
 export function PerformanceTrend() {
   return (
-    <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#e5e3de] shadow-2xs space-y-6">
+    <div className="p-6 sm:p-8 rounded-3xl bg-white border border-stone-200/80 shadow-2xs space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
-            <TrendingUp className="w-4 h-4 text-violet-600" />
+            <TrendingUp className="w-4 h-4 text-slate-900" />
             Performance Over Time
           </h3>
           <p className="text-xs text-slate-500 font-normal">Overall score progression across 6 mock interviews</p>
@@ -32,7 +32,7 @@ export function PerformanceTrend() {
           <span className="px-2.5 py-1 rounded-lg bg-stone-100 text-slate-600 border border-stone-200 font-medium">
             Lowest: 77%
           </span>
-          <span className="px-2.5 py-1 rounded-lg bg-violet-50 text-violet-800 border border-violet-100">
+          <span className="px-2.5 py-1 rounded-lg bg-stone-900 text-white border border-slate-900">
             Avg: 81%
           </span>
         </div>
@@ -60,9 +60,9 @@ export function PerformanceTrend() {
                 type="monotone"
                 dataKey="overall"
                 name="Overall Score"
-                stroke="#7c3aed"
+                stroke="#111111"
                 strokeWidth={3}
-                dot={{ fill: "#7c3aed", r: 5 }}
+                dot={{ fill: "#111111", r: 5 }}
                 activeDot={{ r: 7, stroke: "#ffffff", strokeWidth: 2 }}
               />
             </LineChart>
@@ -72,7 +72,7 @@ export function PerformanceTrend() {
         {/* Interpretation Card (4 cols) */}
         <div className="lg:col-span-4 p-5 rounded-2xl bg-stone-50 border border-stone-200 space-y-3">
           <div className="flex items-center gap-2 text-xs font-bold text-slate-900">
-            <Sparkles className="w-4 h-4 text-violet-600" />
+            <Sparkles className="w-4 h-4 text-slate-900 fill-current" />
             <span>AI Progression Summary</span>
           </div>
 

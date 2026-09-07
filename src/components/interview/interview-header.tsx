@@ -28,10 +28,10 @@ export function InterviewHeader({
   };
 
   return (
-    <div className="p-4 sm:p-5 rounded-2xl bg-white border border-[#e5e3de] shadow-2xs flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div className="p-4 sm:p-5 rounded-2xl bg-white border border-stone-200/80 shadow-2xs flex flex-col sm:flex-row items-center justify-between gap-4">
       {/* Question Counter & Status */}
       <div className="flex items-center gap-3">
-        <div className="w-9 h-9 rounded-xl bg-violet-50 text-violet-700 border border-violet-100 flex items-center justify-center font-bold shrink-0">
+        <div className="w-9 h-9 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold shrink-0">
           <Video className="w-4 h-4" />
         </div>
         <div>
@@ -39,7 +39,7 @@ export function InterviewHeader({
             <span className="text-xs font-bold text-slate-900">
               Question {currentQuestionNumber} of {totalQuestions}
             </span>
-            <span className="px-2 py-0.5 text-[10px] font-bold bg-violet-50 text-violet-800 border border-violet-200 rounded">
+            <span className="px-2 py-0.5 text-[10px] font-bold bg-slate-900 text-white rounded">
               Live Practice
             </span>
           </div>
@@ -53,7 +53,7 @@ export function InterviewHeader({
       <div className="flex items-center gap-3">
         {/* Countdown Timer */}
         <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-stone-50 border border-stone-200">
-          <Clock className="w-3.5 h-3.5 text-violet-600" />
+          <Clock className="w-3.5 h-3.5 text-slate-900" />
           <span className="font-mono text-xs font-bold text-slate-900">
             {formatTime(timerSeconds)}
           </span>
@@ -63,9 +63,9 @@ export function InterviewHeader({
         <button
           onClick={onTogglePause}
           aria-label={isPaused ? "Resume interview timer" : "Pause interview timer"}
-          className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-stone-50 text-slate-700 text-xs font-bold border border-stone-200 transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:outline-none active:scale-[0.98]"
+          className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-stone-50 text-slate-700 text-xs font-bold border border-stone-200 transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:outline-none active:scale-[0.98]"
         >
-          {isPaused ? <Play className="w-3.5 h-3.5 text-violet-600 fill-current" /> : <Pause className="w-3.5 h-3.5 text-slate-500" />}
+          {isPaused ? <Play className="w-3.5 h-3.5 text-slate-900 fill-current" /> : <Pause className="w-3.5 h-3.5 text-slate-500" />}
           <span>{isPaused ? "Resume" : "Pause"}</span>
         </button>
 

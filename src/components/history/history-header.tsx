@@ -6,11 +6,11 @@ import { TrendingUp, Play } from "lucide-react";
 
 export function HistoryHeader() {
   return (
-    <div className="space-y-4 border-b border-[#e5e3de] pb-6 flex flex-col md:flex-row md:items-center justify-between gap-6">
+    <div className="space-y-4 border-b border-stone-200 pb-6 flex flex-col md:flex-row md:items-center justify-between gap-6">
       <div className="space-y-2">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-50 border border-violet-100 text-xs font-semibold text-violet-800">
-            <TrendingUp className="w-3.5 h-3.5 text-violet-600" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 text-white text-xs font-semibold">
+            <TrendingUp className="w-3.5 h-3.5 text-stone-200" />
             <span>Progress Analytics</span>
           </span>
           <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-stone-100 border border-stone-200 text-[10px] font-mono text-slate-500">
@@ -29,7 +29,7 @@ export function HistoryHeader() {
 
       <Link
         href="/interview/setup"
-        className="px-6 py-3 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold shadow-xs hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center gap-2 shrink-0 self-start md:self-auto cursor-pointer"
+        className="px-6 py-3 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-bold shadow-xs hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center gap-2 shrink-0 self-start md:self-auto cursor-pointer"
       >
         <Play className="w-4 h-4 fill-current" />
         <span>Start New Interview</span>

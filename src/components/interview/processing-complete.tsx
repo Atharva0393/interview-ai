@@ -6,7 +6,7 @@ import { CheckCircle2, ArrowRight, ShieldCheck, Award } from "lucide-react";
 
 export function ProcessingComplete() {
   return (
-    <div className="p-8 sm:p-10 rounded-3xl bg-white border border-[#e5e3de] shadow-2xs text-center space-y-6 animate-in zoom-in-95 duration-400 max-w-2xl mx-auto">
+    <div className="p-8 sm:p-10 rounded-3xl bg-white border border-stone-200/80 shadow-2xs text-center space-y-6 animate-in zoom-in-95 duration-400 max-w-2xl mx-auto">
       <div className="w-16 h-16 rounded-2xl bg-emerald-50 border border-emerald-200 p-0.5 mx-auto flex items-center justify-center text-emerald-600 shadow-2xs">
         <CheckCircle2 className="w-8 h-8" />
       </div>
@@ -29,7 +29,7 @@ export function ProcessingComplete() {
       <div className="pt-2">
         <Link
           href="/results"
-          className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-bold text-xs bg-violet-600 hover:bg-violet-700 text-white shadow-xs hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer"
+          className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-bold text-xs bg-slate-900 hover:bg-black text-white shadow-xs hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer"
         >
           <Award className="w-4 h-4" />
           <span>View My Results</span>

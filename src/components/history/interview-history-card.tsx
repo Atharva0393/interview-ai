@@ -15,11 +15,11 @@ export function InterviewHistoryCard({ session }: InterviewHistoryCardProps) {
     session.status === "Best Performance"
       ? "bg-emerald-50 text-emerald-800 border-emerald-200"
       : session.status === "Strong Performance"
-      ? "bg-violet-50 text-violet-800 border-violet-200"
+      ? "bg-stone-900 text-white border-slate-900"
       : "bg-stone-100 text-slate-700 border-stone-200";
 
   return (
-    <div className="rounded-2xl bg-white border border-stone-200 hover:border-stone-300 transition-all overflow-hidden shadow-2xs">
+    <div className="rounded-2xl bg-white border border-stone-200 hover:border-slate-400 transition-all overflow-hidden shadow-2xs">
       {/* Clickable Card Header */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
@@ -40,7 +40,7 @@ export function InterviewHistoryCard({ session }: InterviewHistoryCardProps) {
           </div>
 
           <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-600">
-            <span className="text-violet-700">{session.role}</span>
+            <span className="text-slate-900 font-bold">{session.role}</span>
             <span>•</span>
             <span>{session.type} Interview</span>
             <span>•</span>
@@ -66,7 +66,7 @@ export function InterviewHistoryCard({ session }: InterviewHistoryCardProps) {
 
           {/* Big Score Pill */}
           <div className="flex items-center gap-3">
-            <div className="px-4 py-2 rounded-xl bg-violet-50 text-violet-800 border border-violet-200 text-base font-extrabold">
+            <div className="px-4 py-2 rounded-xl bg-slate-900 text-white border border-slate-900 text-base font-extrabold">
               {session.overallScore}%
             </div>
             <div className="p-1 rounded-lg text-slate-400 group-hover:text-slate-700">
@@ -82,11 +82,11 @@ export function InterviewHistoryCard({ session }: InterviewHistoryCardProps) {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center pt-3">
             <div className="p-3 rounded-xl bg-stone-50 border border-stone-200">
               <span className="text-[10px] text-slate-500 font-semibold uppercase block">Technical</span>
-              <span className="text-sm font-extrabold text-violet-700">{session.technicalKnowledge}%</span>
+              <span className="text-sm font-extrabold text-slate-900">{session.technicalKnowledge}%</span>
             </div>
             <div className="p-3 rounded-xl bg-stone-50 border border-stone-200">
               <span className="text-[10px] text-slate-500 font-semibold uppercase block">Communication</span>
-              <span className="text-sm font-extrabold text-violet-700">{session.communication}%</span>
+              <span className="text-sm font-extrabold text-slate-900">{session.communication}%</span>
             </div>
             <div className="p-3 rounded-xl bg-stone-50 border border-stone-200">
               <span className="text-[10px] text-slate-500 font-semibold uppercase block">Confidence</span>

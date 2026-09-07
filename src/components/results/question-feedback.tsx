@@ -18,12 +18,12 @@ export function QuestionFeedback() {
   };
 
   return (
-    <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#e5e3de] shadow-2xs space-y-6">
+    <div className="p-6 sm:p-8 rounded-3xl bg-white border border-stone-200/80 shadow-2xs space-y-6">
       {/* Header & Filter Controls */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
-            <MessageSquare className="w-4 h-4 text-violet-600" />
+            <MessageSquare className="w-4 h-4 text-slate-900" />
             Question-by-Question Detailed Feedback
           </h3>
           <p className="text-xs text-slate-500 font-normal">Review evaluation breakdown across all 10 session questions</p>
@@ -38,7 +38,7 @@ export function QuestionFeedback() {
               onClick={() => setSelectedFilter(cat)}
               className={`px-3 py-1 rounded-lg font-bold transition-colors cursor-pointer ${
                 selectedFilter === cat
-                  ? "bg-violet-600 text-white shadow-2xs"
+                  ? "bg-slate-900 text-white shadow-2xs"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
@@ -55,10 +55,10 @@ export function QuestionFeedback() {
 
           const scoreBadgeColor =
             q.score >= 85
-              ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+              ? "bg-emerald-50 text-emerald-800 border-emerald-200"
               : q.score >= 80
-              ? "bg-violet-50 text-violet-700 border-violet-200"
-              : "bg-amber-50 text-amber-700 border-amber-200";
+              ? "bg-stone-100 text-slate-900 border-stone-300"
+              : "bg-amber-50 text-amber-800 border-amber-200";
 
           return (
             <div
@@ -77,14 +77,14 @@ export function QuestionFeedback() {
 
                   <div>
                     <div className="flex items-center gap-2 mb-0.5">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-violet-50 text-violet-800 border border-violet-100">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-900 text-white">
                         {q.category}
                       </span>
                       <span className="text-[11px] text-slate-500 font-medium hidden sm:inline-block">
                         {q.subcategory}
                       </span>
                     </div>
-                    <div className="text-xs font-bold text-slate-900 group-hover:text-violet-700 transition-colors line-clamp-1">
+                    <div className="text-xs font-bold text-slate-900 group-hover:text-black transition-colors line-clamp-1">
                       {q.question}
                     </div>
                   </div>
@@ -126,12 +126,12 @@ export function QuestionFeedback() {
                   <div className="grid grid-cols-3 gap-3 text-center">
                     <div className="p-3 rounded-xl bg-white border border-stone-200 shadow-2xs">
                       <span className="text-[10px] text-slate-500 font-semibold block">Relevance</span>
-                      <span className="text-sm font-extrabold text-violet-700">{q.relevance}%</span>
+                      <span className="text-sm font-extrabold text-slate-900">{q.relevance}%</span>
                     </div>
 
                     <div className="p-3 rounded-xl bg-white border border-stone-200 shadow-2xs">
                       <span className="text-[10px] text-slate-500 font-semibold block">Clarity</span>
-                      <span className="text-sm font-extrabold text-violet-700">{q.clarity}%</span>
+                      <span className="text-sm font-extrabold text-slate-900">{q.clarity}%</span>
                     </div>
 
                     <div className="p-3 rounded-xl bg-white border border-stone-200 shadow-2xs">

@@ -17,10 +17,10 @@ interface ProcessingInsightsProps {
 
 export function ProcessingInsights({ visibleCount }: ProcessingInsightsProps) {
   return (
-    <div className="p-6 rounded-2xl bg-white border border-[#e5e3de] shadow-2xs space-y-4">
+    <div className="p-6 rounded-2xl bg-white border border-stone-200/80 shadow-2xs space-y-4">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-violet-600" />
+          <Sparkles className="w-4 h-4 text-slate-900 fill-current" />
           Live AI Processing Insights
         </h3>
         <span className="text-[10px] text-slate-400 font-mono">Simulated Real-time</span>
@@ -32,7 +32,7 @@ export function ProcessingInsights({ visibleCount }: ProcessingInsightsProps) {
             key={idx}
             className="p-3 rounded-xl bg-stone-50 border border-stone-200 text-xs text-slate-800 font-medium flex items-center gap-2.5 animate-in fade-in slide-in-from-left-3 duration-300"
           >
-            <CheckCircle2 className="w-4 h-4 text-violet-600 shrink-0" />
+            <CheckCircle2 className="w-4 h-4 text-slate-900 shrink-0" />
             <span>{insight}</span>
           </div>
         ))}

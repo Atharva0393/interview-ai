@@ -15,16 +15,16 @@ export function PerformanceIndicators({
   engagement,
 }: PerformanceIndicatorsProps) {
   const metrics = [
-    { label: "Communication", value: overallComm, color: "bg-violet-600" },
-    { label: "Confidence", value: confidence, color: "bg-violet-500" },
-    { label: "Engagement", value: engagement, color: "bg-emerald-500" },
+    { label: "Communication", value: overallComm, color: "bg-slate-900" },
+    { label: "Confidence", value: confidence, color: "bg-slate-700" },
+    { label: "Engagement", value: engagement, color: "bg-emerald-600" },
   ];
 
   return (
-    <div className="p-4 rounded-2xl bg-white border border-[#e5e3de] space-y-3 shadow-2xs">
+    <div className="p-4 rounded-2xl bg-white border border-stone-200/80 space-y-3 shadow-2xs">
       <div className="flex items-center justify-between">
         <span className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
-          <Award className="w-3.5 h-3.5 text-violet-600" />
+          <Award className="w-3.5 h-3.5 text-slate-900" />
           Live Performance Readiness
         </span>
         <span className="text-[10px] text-slate-400 font-mono">Multimodal Score</span>

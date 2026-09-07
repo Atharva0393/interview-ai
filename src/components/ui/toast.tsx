@@ -50,15 +50,15 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
             <div
               key={toast.id}
               className={cn(
-                "pointer-events-auto flex items-start gap-3 p-4 rounded-xl shadow-lg border backdrop-blur-md transition-all duration-300 animate-in fade-in slide-in-from-bottom-3",
-                isSuccess && "bg-emerald-50/95 border-emerald-200 text-emerald-950",
-                isError && "bg-red-50/95 border-red-200 text-red-950",
-                !isSuccess && !isError && "bg-white/95 border-[#e5e3de] text-slate-900"
+                "pointer-events-auto flex items-start gap-3 p-4 rounded-xl shadow-xl border backdrop-blur-md transition-all duration-300 animate-in fade-in slide-in-from-bottom-3",
+                isSuccess && "bg-emerald-950/90 border-emerald-800 text-emerald-100",
+                isError && "bg-red-950/90 border-red-800 text-red-100",
+                !isSuccess && !isError && "bg-stone-900/95 border-stone-800 text-stone-100"
               )}
             >
-              {isSuccess && <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />}
-              {isError && <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />}
-              {!isSuccess && !isError && <Info className="w-5 h-5 text-violet-600 shrink-0 mt-0.5" />}
+              {isSuccess && <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />}
+              {isError && <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />}
+              {!isSuccess && !isError && <Info className="w-5 h-5 text-stone-300 shrink-0 mt-0.5" />}
 
               <div className="flex-1 min-w-0">
                 <p className="text-xs font-bold leading-snug">{toast.title}</p>
@@ -69,7 +69,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
 
               <button
                 onClick={() => removeToast(toast.id)}
-                className="p-1 rounded-md text-slate-400 hover:text-slate-600 transition-colors shrink-0"
+                className="p-1 rounded-md text-stone-400 hover:text-stone-200 transition-colors shrink-0"
                 aria-label="Close notification"
               >
                 <X className="w-3.5 h-3.5" />

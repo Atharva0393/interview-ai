@@ -25,7 +25,7 @@ export function FocusAreas() {
   return (
     <div className="p-6 rounded-2xl bg-white border border-[#e5e3de] shadow-2xs space-y-4">
       <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
-        <Target className="w-4 h-4 text-violet-600" />
+        <Target className="w-4 h-4 text-slate-900" />
         Keep Working On
       </h3>
 
@@ -38,7 +38,7 @@ export function FocusAreas() {
               className="p-4 rounded-xl bg-stone-50 border border-stone-200 space-y-1.5"
             >
               <div className="flex items-center gap-2 text-xs font-bold text-slate-900">
-                <Icon className="w-4 h-4 text-violet-600 shrink-0" />
+                <Icon className="w-4 h-4 text-slate-900 shrink-0" />
                 <span>{item.title}</span>
               </div>
               <p className="text-xs text-slate-500 leading-relaxed font-normal">{item.desc}</p>

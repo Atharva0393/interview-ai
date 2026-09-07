@@ -43,7 +43,7 @@ interface AnalysisPipelineProps {
 
 export function AnalysisPipeline({ currentStageId }: AnalysisPipelineProps) {
   return (
-    <div className="p-6 rounded-2xl bg-white border border-[#e5e3de] shadow-2xs space-y-4">
+    <div className="p-6 rounded-2xl bg-white border border-stone-200/80 shadow-2xs space-y-4">
       <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
         AI Evaluation Pipeline
       </h3>
@@ -58,7 +58,7 @@ export function AnalysisPipeline({ currentStageId }: AnalysisPipelineProps) {
               key={stage.id}
               className={`p-3.5 rounded-xl border transition-all duration-300 flex items-start gap-3.5 ${
                 isCurrent
-                  ? "bg-violet-50/80 border-violet-300 shadow-2xs"
+                  ? "bg-stone-100 border-slate-900 shadow-2xs"
                   : isCompleted
                   ? "bg-stone-50 border-stone-200"
                   : "bg-stone-50/40 border-stone-200/60 opacity-60"
@@ -68,7 +68,7 @@ export function AnalysisPipeline({ currentStageId }: AnalysisPipelineProps) {
                 {isCompleted ? (
                   <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                 ) : isCurrent ? (
-                  <Loader2 className="w-4 h-4 text-violet-600 animate-spin" />
+                  <Loader2 className="w-4 h-4 text-slate-900 animate-spin" />
                 ) : (
                   <Circle className="w-4 h-4 text-slate-400" />
                 )}
@@ -78,7 +78,7 @@ export function AnalysisPipeline({ currentStageId }: AnalysisPipelineProps) {
                 <div
                   className={`text-xs font-bold ${
                     isCurrent
-                      ? "text-violet-900"
+                      ? "text-slate-900"
                       : isCompleted
                       ? "text-slate-900"
                       : "text-slate-400"

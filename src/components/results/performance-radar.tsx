@@ -15,11 +15,11 @@ import { MOCK_RADAR_DATA } from "./results-mock-data";
 
 export function PerformanceRadar() {
   return (
-    <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#e5e3de] shadow-2xs space-y-6">
+    <div className="p-6 sm:p-8 rounded-3xl bg-white border border-stone-200/80 shadow-2xs space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
-            <Brain className="w-4 h-4 text-violet-600" />
+            <Brain className="w-4 h-4 text-slate-900" />
             Interview Capability Profile Map
           </h3>
           <p className="text-xs text-slate-500 font-normal">Multimodal performance balance analysis</p>
@@ -51,9 +51,9 @@ export function PerformanceRadar() {
               <Radar
                 name="Candidate Score"
                 dataKey="value"
-                stroke="#7c3aed"
-                fill="#7c3aed"
-                fillOpacity={0.2}
+                stroke="#111111"
+                fill="#111111"
+                fillOpacity={0.15}
               />
             </RadarChart>
           </ResponsiveContainer>
@@ -62,7 +62,7 @@ export function PerformanceRadar() {
         {/* AI Interpretation Card (5 cols) */}
         <div className="lg:col-span-5 p-5 rounded-2xl bg-stone-50 border border-stone-200 space-y-4">
           <div className="flex items-center gap-2 text-xs font-bold text-slate-900">
-            <Sparkles className="w-4 h-4 text-violet-600" />
+            <Sparkles className="w-4 h-4 text-slate-900 fill-current" />
             <span>AI Radar Interpretation</span>
           </div>
 

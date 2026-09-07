@@ -45,8 +45,8 @@ export function HowItWorks({ className }: HowItWorksProps) {
   return (
     <div className={cn("space-y-6", className)}>
       <div className="text-center max-w-2xl mx-auto space-y-2">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 border border-violet-100 text-xs font-semibold text-violet-800 shadow-2xs">
-          <Sparkles className="w-3.5 h-3.5 text-violet-600" />
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-900 text-white text-xs font-semibold shadow-2xs">
+          <Sparkles className="w-3.5 h-3.5 fill-current text-stone-200" />
           <span>The InterviewAI Feedback Loop</span>
         </div>
         <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -64,20 +64,20 @@ export function HowItWorks({ className }: HowItWorksProps) {
           return (
             <div
               key={step.number}
-              className="p-5 rounded-2xl bg-white border border-[#e5e3de] shadow-2xs space-y-3 relative group hover:border-violet-300 transition-all flex flex-col justify-between"
+              className="p-5 rounded-2xl bg-white border border-stone-200/80 shadow-2xs space-y-3 relative group hover:border-slate-400 transition-all flex flex-col justify-between"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-extrabold text-violet-700 bg-violet-50 px-2 py-0.5 rounded border border-violet-100">
+                  <span className="text-xs font-mono font-extrabold text-slate-900 bg-stone-100 px-2 py-0.5 rounded border border-stone-200">
                     {step.number}
                   </span>
-                  <div className="w-8 h-8 rounded-xl bg-stone-50 border border-stone-200 flex items-center justify-center text-slate-600 group-hover:text-violet-600 group-hover:bg-violet-50 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-stone-100 border border-stone-200 flex items-center justify-center text-slate-700 group-hover:text-slate-900 group-hover:bg-stone-200 transition-colors">
                     <Icon className="w-4 h-4" />
                   </div>
                 </div>
 
                 <div>
-                  <h3 className="text-xs font-bold text-slate-900 group-hover:text-violet-700 transition-colors mb-1">
+                  <h3 className="text-xs font-bold text-slate-900 group-hover:text-slate-900 transition-colors mb-1">
                     {step.title}
                   </h3>
                   <p className="text-[11px] text-slate-500 leading-relaxed font-normal">

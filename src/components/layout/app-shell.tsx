@@ -7,10 +7,9 @@ import { PageHeader } from "./page-header";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-[#f9f8f6] text-slate-900 flex flex-col lg:flex-row relative selection:bg-violet-100 selection:text-violet-900">
-      {/* Soft ambient background warmth */}
-      <div className="fixed top-0 left-1/3 w-[600px] h-[600px] bg-violet-100/30 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="fixed bottom-0 right-1/4 w-[500px] h-[500px] bg-stone-200/20 rounded-full blur-3xl pointer-events-none -z-10" />
+    <div className="min-h-screen bg-[#121212] text-slate-900 flex flex-col lg:flex-row relative selection:bg-stone-800 selection:text-white p-0 lg:p-3.5 gap-0 lg:gap-3.5 font-sans">
+      {/* Soft atmospheric ambient lighting */}
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-80 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none -z-10" />
 
       {/* Desktop Workspace Sidebar Navigation */}
       <AppSidebar />
@@ -18,8 +17,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       {/* Mobile Top Navigation */}
       <MobileNavigation />
 
-      {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 min-h-screen">
+      {/* Main Content Workspace Canvas */}
+      <div className="flex-1 flex flex-col min-w-0 min-h-screen lg:min-h-[calc(100vh-1.75rem)] bg-[#f5f4f1] lg:rounded-[32px] border-t lg:border border-stone-200/50 shadow-2xl overflow-hidden relative">
         <PageHeader />
         <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">
           {children}

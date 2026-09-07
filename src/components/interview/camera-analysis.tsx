@@ -21,13 +21,13 @@ export function CameraAnalysis({
   postureStatus,
 }: CameraAnalysisProps) {
   return (
-    <div className="p-4 rounded-2xl bg-white border border-[#e5e3de] space-y-3 shadow-2xs">
+    <div className="p-4 rounded-2xl bg-white border border-stone-200/80 space-y-3 shadow-2xs">
       <div className="flex items-center justify-between">
         <span className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
-          <Eye className="w-3.5 h-3.5 text-violet-600" />
+          <Eye className="w-3.5 h-3.5 text-slate-900" />
           Camera Telemetry & Gaze Tracking
         </span>
-        <span className="px-2 py-0.5 text-[10px] font-mono font-bold bg-violet-50 text-violet-800 border border-violet-100 rounded">
+        <span className="px-2 py-0.5 text-[10px] font-mono font-bold bg-stone-100 text-slate-900 border border-stone-200 rounded">
           Simulated AI Analysis
         </span>
       </div>
@@ -52,7 +52,7 @@ export function CameraAnalysis({
           <div className="text-base font-extrabold text-slate-900 transition-all duration-300">
             {facialEngagement}%
           </div>
-          <span className="text-[10px] font-bold text-violet-700 block">{facialStatus}</span>
+          <span className="text-[10px] font-bold text-slate-900 block">{facialStatus}</span>
         </div>
 
         {/* Posture */}

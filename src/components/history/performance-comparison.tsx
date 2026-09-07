@@ -26,7 +26,7 @@ export function PerformanceComparison() {
         {MOCK_COMPARISON_DATA.map((item) => (
           <div
             key={item.metric}
-            className="p-4 rounded-2xl bg-stone-50 border border-stone-200 space-y-3 hover:border-violet-300 transition-colors"
+            className="p-4 rounded-2xl bg-stone-50 border border-stone-200 space-y-3 hover:border-stone-400 transition-colors"
           >
             <div className="flex items-center justify-between text-xs font-bold text-slate-800">
               <span>{item.metric}</span>
@@ -42,10 +42,10 @@ export function PerformanceComparison() {
                 <span className="text-base font-bold text-slate-500">{item.first}%</span>
               </div>
 
-              <ArrowRight className="w-4 h-4 text-violet-600" />
+              <ArrowRight className="w-4 h-4 text-slate-800" />
 
               <div className="text-center">
-                <span className="text-[10px] text-violet-800 font-bold block">Latest Session</span>
+                <span className="text-[10px] text-slate-900 font-bold block">Latest Session</span>
                 <span className="text-lg font-extrabold text-slate-900">{item.latest}%</span>
               </div>
             </div>

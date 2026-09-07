@@ -30,27 +30,27 @@ export function MobileNavigation() {
   const pathname = usePathname();
 
   return (
-    <div className="lg:hidden sticky top-0 z-50 bg-[#f9f8f6]/95 backdrop-blur-md border-b border-[#e5e3de] px-4 py-3">
+    <div className="lg:hidden sticky top-0 z-50 bg-[#121212] text-white border-b border-white/10 px-4 py-3">
       <div className="flex items-center justify-between">
         {/* Brand Header */}
         <Link href="/dashboard" className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-violet-600 flex items-center justify-center shadow-xs text-white">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="w-7 h-7 rounded-lg bg-white text-black flex items-center justify-center shadow-xs">
+            <Sparkles className="w-3.5 h-3.5 fill-current text-black" />
           </div>
-          <span className="font-bold text-slate-900 text-sm tracking-tight">InterviewAI</span>
+          <span className="font-bold text-white text-sm tracking-tight">InterviewAI</span>
         </Link>
 
         {/* Action Controls */}
         <div className="flex items-center gap-2">
           <Link
             href="/interview/setup"
-            className="px-3 py-1.5 text-xs font-bold rounded-lg bg-violet-600 text-white hover:bg-violet-700 transition-colors shadow-xs"
+            className="px-3 py-1.5 text-xs font-bold rounded-lg bg-white text-black hover:bg-stone-200 transition-colors shadow-xs"
           >
             Start Mock
           </Link>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-stone-200/60 transition-colors"
+            className="p-1.5 rounded-lg text-stone-300 hover:text-white hover:bg-white/10 transition-colors"
             aria-label="Toggle navigation menu"
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -60,7 +60,7 @@ export function MobileNavigation() {
 
       {/* Slide-out Menu Overlay */}
       {isOpen && (
-        <div className="mt-3 pt-3 border-t border-[#e5e3de] space-y-1 animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="mt-3 pt-3 border-t border-white/10 space-y-1 animate-in fade-in slide-in-from-top-2 duration-200">
           {MOBILE_NAV_ITEMS.map((item) => {
             const isActive =
               pathname === item.href ||
@@ -75,11 +75,11 @@ export function MobileNavigation() {
                 className={cn(
                   "flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors",
                   isActive
-                    ? "bg-violet-100 text-violet-900 border border-violet-200"
-                    : "text-slate-600 hover:text-slate-900 hover:bg-stone-100"
+                    ? "bg-white/10 text-white font-semibold"
+                    : "text-stone-400 hover:text-white hover:bg-white/5"
                 )}
               >
-                <Icon className={cn("w-4 h-4", isActive ? "text-violet-700" : "text-slate-400")} />
+                <Icon className={cn("w-4 h-4", isActive ? "text-white" : "text-stone-400")} />
                 <span>{item.name}</span>
               </Link>
             );

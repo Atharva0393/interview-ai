@@ -11,12 +11,12 @@ interface QuestionPanelProps {
 
 export function QuestionPanel({ question, isPaused }: QuestionPanelProps) {
   return (
-    <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#e5e3de] shadow-2xs space-y-6 flex flex-col justify-between">
+    <div className="p-6 sm:p-8 rounded-3xl bg-white border border-stone-200/80 shadow-2xs space-y-6 flex flex-col justify-between">
       {/* Question Header & Category Badge */}
       <div className="space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <span className="px-3 py-1 rounded-full bg-violet-50 text-violet-800 border border-violet-200 text-xs font-bold">
+            <span className="px-3 py-1 rounded-full bg-slate-900 text-white text-xs font-bold">
               Question {question.number}
             </span>
             <span className="px-3 py-1 rounded-full bg-stone-100 text-slate-700 border border-stone-200 text-xs font-semibold">
@@ -36,7 +36,7 @@ export function QuestionPanel({ question, isPaused }: QuestionPanelProps) {
 
         {/* Contextual Guidance Tip */}
         <div className="p-3.5 rounded-xl bg-stone-50 border border-stone-200 text-xs text-slate-700 flex items-start gap-2.5">
-          <HelpCircle className="w-4 h-4 text-violet-600 shrink-0 mt-0.5" />
+          <HelpCircle className="w-4 h-4 text-slate-900 shrink-0 mt-0.5" />
           <p className="leading-relaxed font-normal">
             <span className="font-bold text-slate-900">Guidance Tip: </span>
             {question.helperText}
@@ -45,11 +45,11 @@ export function QuestionPanel({ question, isPaused }: QuestionPanelProps) {
       </div>
 
       {/* Response Listening Waveform & Live Transcript Preview */}
-      <div className="space-y-4 pt-4 border-t border-[#f4f3ef]">
+      <div className="space-y-4 pt-4 border-t border-stone-100">
         {/* Listening Status & Animated Waveform */}
         <div className="flex items-center justify-between p-3.5 rounded-2xl bg-stone-50 border border-stone-200">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-xl bg-violet-50 border border-violet-100 flex items-center justify-center text-violet-600">
+            <div className="w-8 h-8 rounded-xl bg-slate-900 text-white flex items-center justify-center">
               <Mic className="w-4 h-4" />
             </div>
             <div>
@@ -67,7 +67,7 @@ export function QuestionPanel({ question, isPaused }: QuestionPanelProps) {
             {[45, 75, 30, 90, 60, 100, 40, 80, 50, 65, 35, 85].map((h, i) => (
               <div
                 key={i}
-                className="w-1 bg-violet-600 rounded-full transition-all duration-300"
+                className="w-1 bg-slate-900 rounded-full transition-all duration-300"
                 style={{
                   height: !isPaused ? `${h}%` : "15%",
                 }}
@@ -80,7 +80,7 @@ export function QuestionPanel({ question, isPaused }: QuestionPanelProps) {
         <div className="p-4 rounded-2xl bg-white border border-stone-200 space-y-2">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1.5 text-[11px] font-bold text-slate-700">
-              <FileText className="w-3.5 h-3.5 text-violet-600" />
+              <FileText className="w-3.5 h-3.5 text-slate-900" />
               <span>Live Response Preview</span>
             </div>
             <span className="text-[10px] text-slate-400 font-mono">Simulated Speech-to-Text</span>

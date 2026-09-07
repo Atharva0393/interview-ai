@@ -16,7 +16,7 @@ export function ResultsHeader() {
   };
 
   return (
-    <div className="space-y-4 border-b border-[#e5e3de] pb-6 relative">
+    <div className="space-y-4 border-b border-stone-200 pb-6 relative">
       {/* Header Badges */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2">
@@ -32,9 +32,9 @@ export function ResultsHeader() {
         {/* Download Action with Toast */}
         <button
           onClick={handleDownloadClick}
-          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white hover:bg-stone-50 text-slate-700 border border-stone-200 text-xs font-bold transition-all cursor-pointer shadow-2xs focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:outline-none active:scale-[0.98]"
+          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#121212] hover:bg-black text-white text-xs font-bold transition-all cursor-pointer shadow-2xs focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:outline-none active:scale-[0.98]"
         >
-          <Download className="w-3.5 h-3.5 text-violet-600" />
+          <Download className="w-3.5 h-3.5 text-white" />
           <span>Download Report</span>
         </button>
       </div>
@@ -52,19 +52,19 @@ export function ResultsHeader() {
       {/* Compact Context Metadata Row */}
       <div className="flex flex-wrap items-center gap-3 pt-2 text-xs font-bold text-slate-800">
         <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-stone-200 shadow-2xs">
-          <Briefcase className="w-3.5 h-3.5 text-violet-600" />
+          <Briefcase className="w-3.5 h-3.5 text-slate-900" />
           Frontend Developer
         </span>
         <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-stone-200 shadow-2xs">
-          <Layers className="w-3.5 h-3.5 text-violet-600" />
+          <Layers className="w-3.5 h-3.5 text-slate-900" />
           Mixed Interview
         </span>
         <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-stone-200 shadow-2xs">
-          <Sliders className="w-3.5 h-3.5 text-violet-600" />
+          <Sliders className="w-3.5 h-3.5 text-slate-900" />
           Intermediate
         </span>
         <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-stone-200 shadow-2xs">
-          <Clock className="w-3.5 h-3.5 text-violet-600" />
+          <Clock className="w-3.5 h-3.5 text-slate-900" />
           20 Minutes (10 Questions)
         </span>
         <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-stone-200 text-slate-500 font-medium shadow-2xs">

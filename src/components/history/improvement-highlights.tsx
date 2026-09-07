@@ -42,7 +42,7 @@ export function ImprovementHighlights() {
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-xs font-bold text-slate-900">
-                  <Icon className="w-4 h-4 text-violet-600 shrink-0" />
+                  <Icon className="w-4 h-4 text-slate-900 shrink-0" />
                   <span>{item.title}</span>
                 </div>
                 <span className="px-2 py-0.5 rounded text-[10px] font-extrabold border bg-emerald-50 text-emerald-800 border-emerald-200">

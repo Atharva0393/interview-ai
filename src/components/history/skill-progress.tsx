@@ -21,7 +21,7 @@ export function SkillProgress() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
-            <Activity className="w-4 h-4 text-violet-600" />
+            <Activity className="w-4 h-4 text-slate-900" />
             How Your Skills Have Improved
           </h3>
           <p className="text-xs text-slate-500 font-normal">Track skill domain evolution across all 6 mock sessions</p>
@@ -31,17 +31,17 @@ export function SkillProgress() {
         <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-bold">
           {[
             { key: "all", label: "All Skills" },
-            { key: "technical", label: "Technical", color: "#7c3aed" },
-            { key: "communication", label: "Communication", color: "#6366f1" },
-            { key: "confidence", label: "Confidence", color: "#10b981" },
-            { key: "problemSolving", label: "Problem Solving", color: "#f59e0b" },
+            { key: "technical", label: "Technical", color: "#111111" },
+            { key: "communication", label: "Communication", color: "#444444" },
+            { key: "confidence", label: "Confidence", color: "#777777" },
+            { key: "problemSolving", label: "Problem Solving", color: "#aaaaaa" },
           ].map((item) => (
             <button
               key={item.key}
               onClick={() => setActiveKey(item.key)}
               className={`px-2.5 py-1 rounded-lg border transition-colors cursor-pointer ${
                 activeKey === item.key
-                  ? "bg-violet-600 text-white border-violet-600 shadow-2xs"
+                  ? "bg-slate-900 text-white border-slate-900 shadow-2xs"
                   : "bg-stone-50 text-slate-600 border-stone-200 hover:text-slate-900"
               }`}
             >
@@ -81,7 +81,7 @@ export function SkillProgress() {
                   type="monotone"
                   dataKey="technical"
                   name="Technical"
-                  stroke="#7c3aed"
+                  stroke="#111111"
                   strokeWidth={2}
                   dot={{ r: 4 }}
                 />
@@ -92,7 +92,7 @@ export function SkillProgress() {
                   type="monotone"
                   dataKey="communication"
                   name="Communication"
-                  stroke="#6366f1"
+                  stroke="#444444"
                   strokeWidth={2}
                   dot={{ r: 4 }}
                 />
@@ -103,7 +103,7 @@ export function SkillProgress() {
                   type="monotone"
                   dataKey="confidence"
                   name="Confidence"
-                  stroke="#10b981"
+                  stroke="#777777"
                   strokeWidth={2}
                   dot={{ r: 4 }}
                 />
@@ -114,7 +114,7 @@ export function SkillProgress() {
                   type="monotone"
                   dataKey="problemSolving"
                   name="Problem Solving"
-                  stroke="#f59e0b"
+                  stroke="#aaaaaa"
                   strokeWidth={2}
                   dot={{ r: 4 }}
                 />
@@ -126,7 +126,7 @@ export function SkillProgress() {
         {/* Insight Card (4 cols) */}
         <div className="lg:col-span-4 p-5 rounded-2xl bg-stone-50 border border-stone-200 space-y-3">
           <div className="flex items-center gap-2 text-xs font-bold text-slate-900">
-            <Sparkles className="w-4 h-4 text-violet-600" />
+            <Sparkles className="w-4 h-4 text-slate-900" />
             <span>Skill Growth Insight</span>
           </div>
 

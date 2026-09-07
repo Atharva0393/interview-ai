@@ -20,10 +20,10 @@ export function MetricCard({
   trend,
 }: MetricCardProps) {
   return (
-    <div className="p-5 rounded-2xl bg-white border border-[#e5e3de] shadow-2xs hover:border-violet-300 transition-all duration-200 space-y-3">
+    <div className="p-5 rounded-2xl bg-white border border-stone-200/80 shadow-2xs hover:border-slate-400 transition-all duration-200 space-y-3">
       <div className="flex items-center justify-between">
         <span className="text-xs font-bold text-slate-700">{title}</span>
-        <div className="p-2 rounded-xl bg-violet-50 text-violet-700 border border-violet-100">
+        <div className="p-2 rounded-xl bg-slate-900 text-white">
           <Icon className="w-4 h-4" />
         </div>
       </div>
@@ -31,7 +31,7 @@ export function MetricCard({
       <div className="flex items-baseline justify-between">
         <div className="text-2xl font-extrabold text-slate-900 tracking-tight">{value}</div>
         {trend && (
-          <div className="flex items-center gap-1 text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">
+          <div className="flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
             <TrendingUp className="w-3 h-3" />
             <span>{trend.split(" ")[0]}</span>
           </div>

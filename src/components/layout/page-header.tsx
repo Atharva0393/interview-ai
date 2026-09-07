@@ -34,7 +34,7 @@ export function PageHeader() {
   };
 
   return (
-    <header className="hidden md:flex h-16 px-8 items-center justify-between border-b border-[#e5e3de] bg-[#f9f8f6]/80 backdrop-blur-md sticky top-0 z-30">
+    <header className="hidden md:flex h-16 px-8 items-center justify-between border-b border-stone-200/80 bg-[#f5f4f1]/90 backdrop-blur-md sticky top-0 z-30">
       {/* Page Title & Breadcrumb */}
       <div>
         <h1 className="text-base font-bold text-slate-900 tracking-tight flex items-center gap-2">
@@ -53,7 +53,7 @@ export function PageHeader() {
             placeholder="Search questions, roles..."
             readOnly
             aria-label="Search questions and roles"
-            className="w-full bg-white border border-[#e5e3de] rounded-xl pl-9 pr-8 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500 cursor-pointer shadow-2xs transition-all hover:border-slate-300"
+            className="w-full bg-white border border-stone-200/80 rounded-xl pl-9 pr-8 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 cursor-pointer shadow-2xs transition-all hover:border-slate-400"
           />
           <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-0.5 text-[9px] font-mono text-slate-400 bg-stone-100 px-1.5 py-0.5 rounded border border-stone-200 pointer-events-none">
             <Command className="w-2.5 h-2.5" />
@@ -62,13 +62,13 @@ export function PageHeader() {
         </div>
 
         {/* AI Status Badge */}
-        <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 border border-violet-200">
+        <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-stone-900 text-white border border-stone-800">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-600"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
-          <span className="text-xs font-semibold text-violet-800 flex items-center gap-1">
-            <Sparkles className="w-3 h-3 text-violet-600" />
+          <span className="text-xs font-semibold flex items-center gap-1">
+            <Sparkles className="w-3 h-3 text-stone-300 fill-current" />
             AI Ready
           </span>
         </div>
@@ -76,16 +76,16 @@ export function PageHeader() {
         {/* Notifications Icon */}
         <button
           onClick={handleBellClick}
-          className="relative p-2 rounded-xl bg-white border border-[#e5e3de] text-slate-500 hover:text-slate-900 hover:border-slate-300 transition-colors shadow-2xs focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:outline-none cursor-pointer"
+          className="relative p-2 rounded-xl bg-white border border-stone-200 text-slate-600 hover:text-slate-900 hover:border-slate-400 transition-colors shadow-2xs focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:outline-none cursor-pointer"
           aria-label="Notifications"
         >
           <Bell className="w-3.5 h-3.5" />
-          <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-violet-600"></span>
+          <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-slate-900"></span>
         </button>
 
         {/* User Mini Card */}
-        <div className="flex items-center gap-2 pl-2 border-l border-[#e5e3de]">
-          <div className="w-7 h-7 rounded-full bg-violet-600 flex items-center justify-center text-xs font-bold text-white shadow-2xs">
+        <div className="flex items-center gap-2 pl-2 border-l border-stone-200">
+          <div className="w-7 h-7 rounded-full bg-slate-900 flex items-center justify-center text-xs font-bold text-white shadow-2xs">
             {MOCK_USER_PROFILE.name.charAt(0)}
           </div>
           <span className="text-xs font-bold text-slate-800 hidden lg:inline-block">
@@ -96,4 +96,3 @@ export function PageHeader() {
     </header>
   );
 }
-

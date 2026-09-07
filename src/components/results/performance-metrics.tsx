@@ -55,11 +55,11 @@ export function PerformanceMetrics() {
           return (
             <div
               key={item.title}
-              className="p-5 rounded-2xl bg-white border border-[#e5e3de] hover:border-violet-300 transition-all duration-200 space-y-3 shadow-2xs"
+              className="p-5 rounded-2xl bg-white border border-stone-200/80 hover:border-slate-400 transition-all duration-200 space-y-3 shadow-2xs"
             >
               <div className="flex items-center justify-between">
                 <span className="text-xs font-bold text-slate-900">{item.title}</span>
-                <div className="p-2 rounded-xl bg-violet-50 text-violet-700 border border-violet-100">
+                <div className="p-2 rounded-xl bg-slate-900 text-white">
                   <Icon className="w-4 h-4" />
                 </div>
               </div>
@@ -72,7 +72,7 @@ export function PerformanceMetrics() {
               {/* Progress Bar */}
               <div className="w-full h-2 bg-stone-100 rounded-full overflow-hidden p-0.5 border border-stone-200">
                 <div
-                  className="h-full rounded-full bg-violet-600 transition-all duration-500"
+                  className="h-full rounded-full bg-slate-900 transition-all duration-500"
                   style={{ width: `${item.score}%` }}
                 />
               </div>

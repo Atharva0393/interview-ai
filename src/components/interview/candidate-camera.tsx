@@ -17,11 +17,11 @@ export function CandidateCamera({ isPaused }: CandidateCameraProps) {
       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none space-y-3">
         <div className="relative">
           <div
-            className={`w-24 h-24 rounded-full bg-violet-600/30 border border-violet-400/40 flex items-center justify-center shadow-2xs ${
+            className={`w-24 h-24 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center shadow-2xs ${
               !isPaused ? "animate-pulse" : ""
             }`}
           >
-            <div className="w-14 h-14 rounded-full bg-violet-600 flex items-center justify-center font-bold text-lg text-white shadow-2xs">
+            <div className="w-14 h-14 rounded-full bg-stone-100 flex items-center justify-center font-bold text-lg text-slate-900 shadow-2xs">
               AK
             </div>
           </div>
@@ -43,7 +43,7 @@ export function CandidateCamera({ isPaused }: CandidateCameraProps) {
           <span>Camera Preview • Simulated</span>
         </div>
 
-        <div className="px-2.5 py-1 rounded-full bg-violet-950/80 backdrop-blur-md border border-violet-500/40 text-[10px] font-mono text-violet-300">
+        <div className="px-2.5 py-1 rounded-full bg-stone-800/80 backdrop-blur-md border border-stone-700 text-[10px] font-mono text-stone-300">
           1080p • 60 FPS
         </div>
       </div>
