@@ -111,7 +111,7 @@ export default function DashboardPage() {
                 <h3 className="text-base font-bold text-slate-900">AI Coach Recommendation</h3>
               </div>
               <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                Based on your last <span className="text-violet-700 font-semibold">Senior React Developer</span> mock session, your technical explanations are strong, but eye contact dropped during STAR response transitions.
+                Based on your last <span className="text-violet-700 font-semibold">Frontend Developer</span> mock session, your technical explanations are strong, but eye contact dropped during STAR response transitions.
               </p>
               <div className="p-3.5 rounded-xl bg-stone-50 border border-stone-200/80 space-y-2">
                 <div className="flex items-center justify-between text-xs font-bold text-slate-900">
@@ -126,7 +126,7 @@ export default function DashboardPage() {
 
             <Link
               href="/resume"
-              className="mt-6 flex items-center justify-between px-4 py-2.5 rounded-xl bg-stone-100 hover:bg-stone-200/60 text-xs font-bold text-slate-700 hover:text-slate-900 border border-stone-200 transition-colors"
+              className="mt-6 flex items-center justify-between px-4 py-2.5 rounded-xl bg-stone-100 hover:bg-stone-200/60 text-xs font-bold text-slate-700 hover:text-slate-900 border border-stone-200 transition-colors focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:outline-none"
             >
               <span>Review Resume Target Roles</span>
               <ArrowRight className="w-3.5 h-3.5 text-violet-700" />
