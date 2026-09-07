@@ -1,96 +1,90 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { Sparkles, CheckCircle2, Loader2, Cpu, ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
 import { AppShell } from "@/components/layout/app-shell";
+import { ProcessingHeader } from "@/components/interview/processing-header";
+import { ProcessingVisual } from "@/components/interview/processing-visual";
+import { AnalysisPipeline } from "@/components/interview/analysis-pipeline";
+import { ProcessingInsights, SIMULATED_INSIGHTS } from "@/components/interview/processing-insights";
+import { SignalSynthesis } from "@/components/interview/signal-synthesis";
+import { ProcessingMetrics } from "@/components/interview/processing-metrics";
+import { ProcessingComplete } from "@/components/interview/processing-complete";
 
 export default function InterviewProcessingPage() {
-  const router = useRouter();
-  const [completedSteps, setCompletedSteps] = useState<number[]>([]);
+  const [progress, setProgress] = useState(0);
+  const [currentStageId, setCurrentStageId] = useState(1);
+  const [insightsCount, setInsightsCount] = useState(1);
+  const [isComplete, setIsComplete] = useState(false);
 
+  // Smooth Progress Timer over ~9 seconds
   useEffect(() => {
-    const timer1 = setTimeout(() => setCompletedSteps([0]), 800);
-    const timer2 = setTimeout(() => setCompletedSteps([0, 1]), 1800);
-    const timer3 = setTimeout(() => setCompletedSteps([0, 1, 2]), 2800);
-    const timer4 = setTimeout(() => {
-      setCompletedSteps([0, 1, 2, 3]);
-      setTimeout(() => router.push("/results"), 1200);
-    }, 3800);
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev < 100) {
+          const next = prev + 1.25; // 100 / 1.25 * 100ms = 8000ms total
+          if (next >= 100) {
+            clearInterval(interval);
+            setIsComplete(true);
+            return 100;
+          }
+          return next;
+        }
+        return 100;
+      });
+    }, 100);
 
-    return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-      clearTimeout(timer3);
-      clearTimeout(timer4);
-    };
-  }, [router]);
+    return () => clearInterval(interval);
+  }, []);
 
-  const steps = [
-    "Transcribing vocal audio & response clarity...",
-    "Evaluating STAR response structure & technical accuracy...",
-    "Analyzing non-verbal eye gaze and posture metrics...",
-    "Synthesizing personalized feedback and readiness score...",
-  ];
+  // Update Pipeline Stage ID based on progress thresholds
+  useEffect(() => {
+    if (progress >= 90) setCurrentStageId(5);
+    else if (progress >= 70) setCurrentStageId(4);
+    else if (progress >= 45) setCurrentStageId(3);
+    else if (progress >= 20) setCurrentStageId(2);
+    else setCurrentStageId(1);
+
+    // Update Insights Ticker count based on progress
+    const count = Math.min(SIMULATED_INSIGHTS.length, Math.floor((progress / 100) * SIMULATED_INSIGHTS.length) + 1);
+    setInsightsCount(count);
+  }, [progress]);
 
   return (
     <AppShell>
-      <div className="min-h-[70vh] flex flex-col items-center justify-center text-center max-w-xl mx-auto space-y-8 animate-in fade-in duration-300">
-        {/* Animated Processing Glow Orb */}
-        <div className="relative">
-          <div className="w-24 h-24 rounded-3xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-violet-600 p-0.5 shadow-2xl shadow-blue-500/30 animate-pulse">
-            <div className="w-full h-full rounded-[22px] bg-[#0b0f19] flex items-center justify-center">
-              <Cpu className="w-10 h-10 text-blue-400 animate-bounce" />
-            </div>
+      <div className="space-y-8 max-w-5xl mx-auto py-4 animate-in fade-in duration-300">
+        {/* Focused Header */}
+        <ProcessingHeader />
+
+        {isComplete ? (
+          /* Completion State View */
+          <div className="space-y-8 animate-in fade-in zoom-in-95 duration-400">
+            <ProcessingComplete />
+            <SignalSynthesis />
           </div>
-          <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500 to-violet-500 rounded-full blur-2xl opacity-20 pointer-events-none" />
-        </div>
+        ) : (
+          /* Active Processing View */
+          <div className="space-y-8">
+            {/* Central AI Visualizer Orb & Progress Counter */}
+            <ProcessingVisual progress={progress} />
 
-        {/* Header Text */}
-        <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-xs font-semibold text-violet-400">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>AI Evaluation Engine in Progress</span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Evaluating Your Interview Session
-          </h1>
-          <p className="text-xs text-slate-400">
-            Please wait while our multimodal AI models analyze your vocal delivery, technical depth, and non-verbal signals.
-          </p>
-        </div>
+            {/* Incoming Mock Score Telemetry Cards */}
+            <ProcessingMetrics progress={progress} />
 
-        {/* Processing Steps Checklist */}
-        <div className="w-full p-6 rounded-2xl bg-[#111827]/90 border border-[#1e293b] text-left space-y-4 shadow-xl">
-          {steps.map((step, idx) => {
-            const isDone = completedSteps.includes(idx);
-            const isCurrent = completedSteps.length === idx;
-
-            return (
-              <div key={idx} className="flex items-center gap-3 text-xs font-medium">
-                {isDone ? (
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                ) : isCurrent ? (
-                  <Loader2 className="w-4 h-4 text-blue-400 animate-spin shrink-0" />
-                ) : (
-                  <div className="w-4 h-4 rounded-full border border-slate-700 shrink-0" />
-                )}
-                <span className={isDone ? "text-slate-200" : isCurrent ? "text-white font-bold" : "text-slate-500"}>
-                  {step}
-                </span>
+            {/* Grid Layout: Analysis Pipeline (Left) & Insights/Synthesis (Right) */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+              <div className="lg:col-span-6">
+                <AnalysisPipeline currentStageId={currentStageId} />
               </div>
-            );
-          })}
-        </div>
 
-        {/* Manual Skip CTA */}
-        <button
-          onClick={() => router.push("/results")}
-          className="inline-flex items-center gap-2 text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors"
-        >
-          <span>Skip waiting and view report</span>
-          <ArrowRight className="w-3.5 h-3.5" />
-        </button>
+              <div className="lg:col-span-6 space-y-6">
+                <ProcessingInsights visibleCount={insightsCount} />
+              </div>
+            </div>
+
+            {/* Signal Synthesis Architecture Diagram */}
+            <SignalSynthesis />
+          </div>
+        )}
       </div>
     </AppShell>
   );
