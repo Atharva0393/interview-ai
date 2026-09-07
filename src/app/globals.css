@@ -2,7 +2,7 @@
 
 @layer base {
   :root {
-    --bg-outer: #121212;
+    --bg-outer: #f5f4f1;
     --bg-canvas: #f5f4f1;
     --bg-surface: #ffffff;
     --bg-surface-subtle: #ebe9e4;
@@ -25,7 +25,7 @@
 }
 
 body {
-  background-color: var(--bg-outer);
+  background-color: var(--bg-canvas);
   color: var(--text-primary);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   min-height: 100vh;
@@ -39,14 +39,14 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-outer);
+  background: var(--bg-canvas);
 }
 ::-webkit-scrollbar-thumb {
-  background: #333333;
+  background: #d4d0c7;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #555555;
+  background: #b5b0a4;
 }
 
 /* Premium Monochrome Surface Card Styling */

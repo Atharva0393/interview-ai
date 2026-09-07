@@ -36,7 +36,7 @@ export function AppSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="hidden lg:flex flex-col w-64 h-[calc(100vh-1.75rem)] sticky top-3.5 bg-[#121212] text-stone-300 z-40 select-none rounded-[24px] border border-white/5 p-4 flex-shrink-0">
+    <aside className="hidden lg:flex flex-col w-64 h-screen sticky top-0 bg-[#121212] text-stone-300 z-40 select-none border-r border-stone-800/80 p-4 flex-shrink-0">
       {/* Brand Logo Header */}
       <div className="pb-5 pt-2 px-2 flex items-center justify-between border-b border-white/10">
         <Link href="/dashboard" className="flex items-center gap-2.5 group">
