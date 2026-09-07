@@ -21,7 +21,7 @@ export function ProcessingHeader() {
       </h1>
 
       <p className="text-xs sm:text-sm text-slate-500 font-normal leading-relaxed">
-        Our AI is processing your responses, communication patterns, and interview performance to create your personalized feedback report.
+        Our AI engine is currently synthesizing your vocal delivery, eye contact patterns, and technical response depth into a structured, personalized performance report.
       </p>
     </div>
   );

@@ -198,39 +198,48 @@ export default function InterviewSetupPage() {
         </div>
 
         {/* Profile Context Card */}
-        <div className="p-5 rounded-2xl bg-white border border-[#e5e3de] shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-violet-600 flex items-center justify-center font-extrabold text-white text-lg shadow-2xs shrink-0">
-              AK
-            </div>
-            <div className="space-y-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="text-sm font-bold text-slate-900">Candidate: Atharva Kale</span>
-                <span className="px-2 py-0.5 text-[10px] font-bold bg-violet-50 text-violet-700 border border-violet-100 rounded-md">
-                  Target: {selectedRole}
-                </span>
-                <span className="px-2 py-0.5 text-[10px] font-bold bg-stone-100 text-slate-700 border border-stone-200 rounded-md">
-                  Fresher / Entry Level
-                </span>
+        <div className="p-5 rounded-2xl bg-white border border-[#e5e3de] shadow-2xs space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-violet-600 flex items-center justify-center font-extrabold text-white text-lg shadow-2xs shrink-0">
+                AK
               </div>
-              <div className="flex flex-wrap items-center gap-1.5 text-xs text-slate-500 font-normal">
-                <span className="font-semibold text-slate-700">Extracted Skills:</span>
-                {["React", "Next.js", "JavaScript", "TypeScript", "Tailwind CSS"].map((sk) => (
-                  <span key={sk} className="px-2 py-0.5 rounded bg-stone-100 text-slate-700 text-[10px] border border-stone-200">
-                    {sk}
+              <div className="space-y-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-sm font-bold text-slate-900">Candidate: Atharva Kale</span>
+                  <span className="px-2 py-0.5 text-[10px] font-bold bg-violet-50 text-violet-700 border border-violet-100 rounded-md">
+                    Target: {selectedRole}
                   </span>
-                ))}
+                  <span className="px-2 py-0.5 text-[10px] font-bold bg-stone-100 text-slate-700 border border-stone-200 rounded-md">
+                    Fresher / Entry Level
+                  </span>
+                </div>
+                <div className="flex flex-wrap items-center gap-1.5 text-xs text-slate-500 font-normal">
+                  <span className="font-semibold text-slate-700">Extracted Skills:</span>
+                  {["React", "Next.js", "JavaScript", "TypeScript", "Tailwind CSS"].map((sk) => (
+                    <span key={sk} className="px-2 py-0.5 rounded bg-stone-100 text-slate-700 text-[10px] border border-stone-200">
+                      {sk}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
 
-          <Link
-            href="/resume"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-stone-50 hover:bg-stone-100 text-slate-700 text-xs font-bold border border-stone-200 transition-colors shrink-0 cursor-pointer"
-          >
-            <Edit3 className="w-3.5 h-3.5 text-violet-600" />
-            <span>Edit Profile</span>
-          </Link>
+            <Link
+              href="/resume"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-stone-50 hover:bg-stone-100 text-slate-700 text-xs font-bold border border-stone-200 transition-colors shrink-0 cursor-pointer"
+            >
+              <Edit3 className="w-3.5 h-3.5 text-violet-600" />
+              <span>Edit Profile</span>
+            </Link>
+          </div>
+          
+          <div className="pt-3 border-t border-stone-100">
+            <p className="text-xs text-slate-500 flex items-center gap-1.5 leading-relaxed">
+              <Sparkles className="w-3.5 h-3.5 text-violet-500 shrink-0" />
+              <span><strong className="font-medium text-slate-700">AI Context Engine:</strong> Your extracted resume skills and experience level will be used dynamically to calibrate question complexity and evaluate the depth of your technical responses.</span>
+            </p>
+          </div>
         </div>
 
         {/* Configuration Body Layout (8 cols left, 4 cols right summary) */}

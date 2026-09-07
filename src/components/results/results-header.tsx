@@ -44,8 +44,8 @@ export function ResultsHeader() {
         <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
           Your Interview Performance Report
         </h1>
-        <p className="text-xs sm:text-sm text-slate-500 font-normal mt-1">
-          Here is a complete breakdown of your interview performance and personalized insights to help you improve.
+        <p className="text-xs sm:text-sm text-slate-500 font-normal mt-1 leading-relaxed">
+          Here is a complete breakdown of your interview performance. Review these scores alongside your personalized growth recommendations, and track your readiness improvements over time in your History tab.
         </p>
       </div>
 
