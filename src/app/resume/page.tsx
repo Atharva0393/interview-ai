@@ -20,8 +20,10 @@ import {
   Cpu,
 } from "lucide-react";
 import { AppShell } from "@/components/layout/app-shell";
+import { useToast } from "@/components/ui/toast";
 
 export default function ResumePage() {
+  const { showToast } = useToast();
   // Upload States
   const [isUploaded, setIsUploaded] = useState(true);
   const [isDragging, setIsDragging] = useState(false);
@@ -65,6 +67,7 @@ export default function ResumePage() {
           setTimeout(() => {
             setIsAnalyzing(false);
             setIsUploaded(true);
+            showToast("Resume Parsed", "Extracted technical skills and project details successfully.", "success");
           }, 600);
           return prev;
         }
@@ -97,11 +100,13 @@ export default function ResumePage() {
 
   const handleRemoveFile = () => {
     setIsUploaded(false);
+    showToast("Resume Removed", "Upload a new resume to re-calibrate your AI candidate profile.", "info");
   };
 
   const handleAddSkill = () => {
     if (newSkillInput.trim() && !skills.includes(newSkillInput.trim())) {
       setSkills([...skills, newSkillInput.trim()]);
+      showToast("Skill Added", `Added ${newSkillInput.trim()} to core technical profile.`, "success");
       setNewSkillInput("");
       setShowAddSkill(false);
     }
@@ -109,6 +114,7 @@ export default function ResumePage() {
 
   const handleRemoveSkill = (skillToRemove: string) => {
     setSkills(skills.filter((s) => s !== skillToRemove));
+    showToast("Skill Removed", `Removed ${skillToRemove} from technical profile.`, "info");
   };
 
   return (

@@ -27,7 +27,8 @@ export function InterviewControls({
       <button
         onClick={onPrevious}
         disabled={isFirst}
-        className="px-4 py-2.5 rounded-xl bg-white hover:bg-stone-50 text-slate-700 disabled:text-slate-300 border border-stone-200 disabled:border-stone-100 text-xs font-bold transition-colors flex items-center gap-1.5 cursor-pointer disabled:cursor-not-allowed shadow-2xs"
+        aria-label="Navigate to previous question"
+        className="px-4 py-2.5 rounded-xl bg-white hover:bg-stone-50 text-slate-700 disabled:text-slate-300 border border-stone-200 disabled:border-stone-100 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer disabled:cursor-not-allowed shadow-2xs focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:outline-none active:scale-[0.98]"
       >
         <ChevronLeft className="w-4 h-4" />
         <span>Previous Question</span>
@@ -38,7 +39,8 @@ export function InterviewControls({
         {!isLast && (
           <button
             onClick={onSkip}
-            className="px-4 py-2.5 rounded-xl bg-white hover:bg-stone-50 text-slate-500 hover:text-slate-800 border border-stone-200 text-xs font-bold transition-colors flex items-center gap-1.5 cursor-pointer shadow-2xs"
+            aria-label="Skip current question"
+            className="px-4 py-2.5 rounded-xl bg-white hover:bg-stone-50 text-slate-500 hover:text-slate-800 border border-stone-200 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:outline-none active:scale-[0.98]"
           >
             <SkipForward className="w-3.5 h-3.5" />
             <span>Skip</span>
@@ -47,7 +49,8 @@ export function InterviewControls({
 
         <button
           onClick={onNext}
-          className="px-6 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold shadow-xs hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center gap-2 cursor-pointer"
+          aria-label={isLast ? "Complete Interview" : "Proceed to next question"}
+          className="px-6 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold shadow-xs hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:outline-none"
         >
           <span>{isLast ? "Complete Interview" : "Next Question"}</span>
           {isLast ? (

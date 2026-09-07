@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { Sparkles, Bell, Search, Command } from "lucide-react";
 import { MOCK_USER_PROFILE } from "@/lib/mock-data";
+import { useToast } from "@/components/ui/toast";
 
 const ROUTE_TITLES: Record<string, { title: string; subtitle: string }> = {
   "/": { title: "Welcome to InterviewAI", subtitle: "AI-Driven Mock Interview Platform" },
@@ -18,9 +19,18 @@ const ROUTE_TITLES: Record<string, { title: string; subtitle: string }> = {
 
 export function PageHeader() {
   const pathname = usePathname();
+  const { showToast } = useToast();
   const meta = ROUTE_TITLES[pathname] || {
     title: "InterviewAI",
     subtitle: "AI-Driven Engineering Interview Prep",
+  };
+
+  const handleSearchClick = () => {
+    showToast("Global Search", "Press Cmd + K anytime to filter questions & sessions", "info");
+  };
+
+  const handleBellClick = () => {
+    showToast("Notifications", "You have 2 completed interview reports ready to review", "info");
   };
 
   return (
@@ -36,15 +46,16 @@ export function PageHeader() {
       {/* Top Header Utilities */}
       <div className="flex items-center gap-4">
         {/* Search Input Bar */}
-        <div className="relative w-60 hidden xl:block">
+        <div className="relative w-60 hidden xl:block" onClick={handleSearchClick}>
           <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             placeholder="Search questions, roles..."
             readOnly
-            className="w-full bg-white border border-[#e5e3de] rounded-xl pl-9 pr-8 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-violet-400 cursor-pointer shadow-2xs"
+            aria-label="Search questions and roles"
+            className="w-full bg-white border border-[#e5e3de] rounded-xl pl-9 pr-8 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500 cursor-pointer shadow-2xs transition-all hover:border-slate-300"
           />
-          <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-0.5 text-[9px] font-mono text-slate-400 bg-stone-100 px-1.5 py-0.5 rounded border border-stone-200">
+          <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-0.5 text-[9px] font-mono text-slate-400 bg-stone-100 px-1.5 py-0.5 rounded border border-stone-200 pointer-events-none">
             <Command className="w-2.5 h-2.5" />
             <span>K</span>
           </div>
@@ -64,7 +75,8 @@ export function PageHeader() {
 
         {/* Notifications Icon */}
         <button
-          className="relative p-2 rounded-xl bg-white border border-[#e5e3de] text-slate-500 hover:text-slate-900 hover:border-slate-300 transition-colors shadow-2xs"
+          onClick={handleBellClick}
+          className="relative p-2 rounded-xl bg-white border border-[#e5e3de] text-slate-500 hover:text-slate-900 hover:border-slate-300 transition-colors shadow-2xs focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:outline-none cursor-pointer"
           aria-label="Notifications"
         >
           <Bell className="w-3.5 h-3.5" />
@@ -84,3 +96,4 @@ export function PageHeader() {
     </header>
   );
 }
+

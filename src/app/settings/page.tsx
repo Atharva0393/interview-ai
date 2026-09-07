@@ -12,8 +12,10 @@ import {
 } from "lucide-react";
 import { AppShell } from "@/components/layout/app-shell";
 import { MOCK_USER_PROFILE } from "@/lib/mock-data";
+import { useToast } from "@/components/ui/toast";
 
 export default function SettingsPage() {
+  const { showToast } = useToast();
   const [saved, setSaved] = useState(false);
   const [aiStrictness, setAiStrictness] = useState("Balanced");
   const [micDevice, setMicDevice] = useState("Default Microphone (Built-in)");
@@ -21,7 +23,8 @@ export default function SettingsPage() {
 
   const handleSave = () => {
     setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
+    showToast("Settings Updated", "Your profile and AI evaluation parameters have been saved.", "success");
+    setTimeout(() => setSaved(false), 2500);
   };
 
   return (
@@ -42,7 +45,7 @@ export default function SettingsPage() {
 
           <button
             onClick={handleSave}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold transition-all shadow-xs cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold transition-all shadow-xs cursor-pointer focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:outline-none active:scale-[0.98]"
           >
             {saved ? <Check className="w-4 h-4 text-emerald-300" /> : <Save className="w-4 h-4" />}
             <span>{saved ? "Settings Saved!" : "Save Changes"}</span>

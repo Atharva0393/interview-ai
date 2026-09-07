@@ -62,7 +62,8 @@ export function InterviewHeader({
         {/* Pause / Resume Button */}
         <button
           onClick={onTogglePause}
-          className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-stone-50 text-slate-700 text-xs font-bold border border-stone-200 transition-colors flex items-center gap-1.5 cursor-pointer shadow-2xs"
+          aria-label={isPaused ? "Resume interview timer" : "Pause interview timer"}
+          className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-stone-50 text-slate-700 text-xs font-bold border border-stone-200 transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:outline-none active:scale-[0.98]"
         >
           {isPaused ? <Play className="w-3.5 h-3.5 text-violet-600 fill-current" /> : <Pause className="w-3.5 h-3.5 text-slate-500" />}
           <span>{isPaused ? "Resume" : "Pause"}</span>
@@ -71,7 +72,8 @@ export function InterviewHeader({
         {/* End Interview Button */}
         <button
           onClick={onOpenEndModal}
-          className="px-3.5 py-1.5 rounded-xl bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold border border-red-200 transition-colors flex items-center gap-1.5 cursor-pointer"
+          aria-label="End session early and process results"
+          className="px-3.5 py-1.5 rounded-xl bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold border border-red-200 transition-all flex items-center gap-1.5 cursor-pointer focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none active:scale-[0.98]"
         >
           <LogOut className="w-3.5 h-3.5" />
           <span>End Session</span>

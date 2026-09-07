@@ -610,7 +610,8 @@ export default function InterviewSetupPage() {
               <div className="space-y-2 pt-2">
                 <button
                   onClick={handleStartInterview}
-                  className="w-full py-3.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold shadow-xs hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  aria-label="Start AI Mock Interview Session"
+                  className="w-full py-3.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold shadow-xs hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:outline-none"
                 >
                   <Play className="w-4 h-4 fill-current" />
                   <span>Start AI Mock Interview</span>

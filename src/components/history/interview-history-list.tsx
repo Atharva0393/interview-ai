@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { History, Filter } from "lucide-react";
 import { MOCK_HISTORICAL_SESSIONS } from "./history-mock-data";
 import { InterviewHistoryCard } from "./interview-history-card";
+import { EmptyState } from "@/components/ui/empty-state";
 
 export function InterviewHistoryList() {
   const [selectedType, setSelectedType] = useState<string>("All");
@@ -39,7 +40,8 @@ export function InterviewHistoryList() {
           <select
             value={selectedType}
             onChange={(e) => setSelectedType(e.target.value)}
-            className="bg-white border border-stone-200 rounded-xl px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-violet-400 cursor-pointer shadow-2xs font-bold"
+            aria-label="Filter by interview type"
+            className="bg-white border border-stone-200 rounded-xl px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-violet-500 cursor-pointer shadow-2xs font-bold"
           >
             <option value="All">All Types</option>
             <option value="Technical">Technical</option>
@@ -51,7 +53,8 @@ export function InterviewHistoryList() {
           <select
             value={selectedDifficulty}
             onChange={(e) => setSelectedDifficulty(e.target.value)}
-            className="bg-white border border-stone-200 rounded-xl px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-violet-400 cursor-pointer shadow-2xs font-bold"
+            aria-label="Filter by difficulty level"
+            className="bg-white border border-stone-200 rounded-xl px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-violet-500 cursor-pointer shadow-2xs font-bold"
           >
             <option value="All">All Difficulties</option>
             <option value="Beginner">Beginner</option>
@@ -63,7 +66,8 @@ export function InterviewHistoryList() {
           <select
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value as any)}
-            className="bg-white border border-stone-200 rounded-xl px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-violet-400 cursor-pointer shadow-2xs font-bold"
+            aria-label="Sort sessions order"
+            className="bg-white border border-stone-200 rounded-xl px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-violet-500 cursor-pointer shadow-2xs font-bold"
           >
             <option value="newest">Newest First</option>
             <option value="oldest">Oldest First</option>
@@ -79,22 +83,16 @@ export function InterviewHistoryList() {
             <InterviewHistoryCard key={session.id} session={session} />
           ))
         ) : (
-          <div className="p-8 text-center rounded-2xl bg-stone-50 border border-stone-200 space-y-3">
-            <Filter className="w-8 h-8 text-slate-400 mx-auto" />
-            <div className="space-y-1">
-              <h4 className="text-sm font-bold text-slate-900">No Matching Interview Logs</h4>
-              <p className="text-xs text-slate-500 font-normal">Try adjusting your type or difficulty filters to see your session history.</p>
-            </div>
-            <button
-              onClick={() => {
-                setSelectedType("All");
-                setSelectedDifficulty("All");
-              }}
-              className="px-4 py-2 rounded-xl bg-violet-50 hover:bg-violet-100 text-violet-800 border border-violet-200 text-xs font-bold transition-colors cursor-pointer"
-            >
-              Reset Filters
-            </button>
-          </div>
+          <EmptyState
+            icon={Filter}
+            title="No Matching Interview Logs"
+            description="No sessions found matching your selected type or difficulty filters. Reset filters to view all historical interviews."
+            actionLabel="Reset Filters"
+            onAction={() => {
+              setSelectedType("All");
+              setSelectedDifficulty("All");
+            }}
+          />
         )}
       </div>
     </div>
