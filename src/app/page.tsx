@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Sparkles, ArrowRight, Video, BarChart2, Cpu } from "lucide-react";
+import { Sparkles, BarChart2, Cpu, Video } from "lucide-react";
 import { HowItWorks } from "@/components/ui/how-it-works";
 import { AnalysisDimensions } from "@/components/ui/analysis-dimensions";
+import ArrowFillButton from "@/components/ui/arrow-fill-button";
 
 export default function LandingPage() {
   return (
@@ -23,12 +24,14 @@ export default function LandingPage() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Link
+          <ArrowFillButton
+            btnText="Launch Workspace"
             href="/dashboard"
-            className="px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 hover:bg-black text-white transition-all shadow-xs cursor-pointer focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:outline-none"
-          >
-            Launch Workspace
-          </Link>
+            bgColor="#111111"
+            textColor="#ffffff"
+            fillBgColor="#ffffff"
+            fillTextColor="#111111"
+          />
         </div>
       </header>
 
@@ -50,20 +53,22 @@ export default function LandingPage() {
           </p>
 
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
+            <ArrowFillButton
+              btnText="Enter Dashboard Overview"
               href="/dashboard"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-xs bg-slate-900 hover:bg-black text-white shadow-sm hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:outline-none"
-            >
-              <span>Enter Dashboard Overview</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
+              bgColor="#111111"
+              textColor="#ffffff"
+              fillBgColor="#ffffff"
+              fillTextColor="#111111"
+            />
+            <ArrowFillButton
+              btnText="Start Quick Session"
               href="/interview/setup"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-xs bg-white hover:bg-stone-100 text-slate-800 border border-stone-200 transition-colors flex items-center justify-center gap-2 shadow-2xs cursor-pointer focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:outline-none"
-            >
-              <Video className="w-4 h-4 text-slate-900" />
-              <span>Start Quick Session</span>
-            </Link>
+              bgColor="#ffffff"
+              textColor="#111111"
+              fillBgColor="#111111"
+              fillTextColor="#ffffff"
+            />
           </div>
         </div>
 
