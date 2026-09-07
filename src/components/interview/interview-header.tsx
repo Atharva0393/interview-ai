@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { Sparkles, Clock, Pause, Play, LogOut } from "lucide-react";
+import { Clock, Pause, Play, LogOut, Video } from "lucide-react";
 
 interface InterviewHeaderProps {
   currentQuestionNumber: number;
@@ -21,78 +20,63 @@ export function InterviewHeader({
   onTogglePause,
   onOpenEndModal,
 }: InterviewHeaderProps) {
+  // Format seconds into MM:SS
   const formatTime = (secs: number) => {
-    const m = Math.floor(secs / 60);
-    const s = secs % 60;
-    return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
+    const mins = Math.floor(secs / 60);
+    const remainder = secs % 60;
+    return `${mins.toString().padStart(2, "0")}:${remainder.toString().padStart(2, "0")}`;
   };
 
   return (
-    <header className="px-4 sm:px-6 py-3.5 rounded-2xl bg-[#111827]/90 backdrop-blur-md border border-[#1e293b] flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xl">
-      {/* Left Section: Brand & Interview Title */}
+    <div className="p-4 sm:p-5 rounded-2xl bg-white border border-[#e5e3de] shadow-2xs flex flex-col sm:flex-row items-center justify-between gap-4">
+      {/* Question Counter & Status */}
       <div className="flex items-center gap-3">
-        <Link href="/dashboard" className="flex items-center gap-2 shrink-0">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center shadow-md">
-            <Sparkles className="w-4 h-4 text-white" />
-          </div>
-          <span className="font-extrabold text-white text-sm tracking-tight hidden sm:inline-block">
-            InterviewAI
-          </span>
-        </Link>
-
-        <div className="h-4 w-px bg-slate-800 hidden sm:block" />
-
+        <div className="w-9 h-9 rounded-xl bg-violet-50 text-violet-700 border border-violet-100 flex items-center justify-center font-bold shrink-0">
+          <Video className="w-4 h-4" />
+        </div>
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xs sm:text-sm font-bold text-white tracking-tight">
-              Frontend Developer Mock Interview
-            </h1>
-            <span className="flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full shrink-0">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              AI Active
+            <span className="text-xs font-bold text-slate-900">
+              Question {currentQuestionNumber} of {totalQuestions}
+            </span>
+            <span className="px-2 py-0.5 text-[10px] font-bold bg-violet-50 text-violet-800 border border-violet-200 rounded">
+              Live Practice
             </span>
           </div>
-          <p className="text-[11px] text-slate-400 hidden sm:block">
-            Simulated multimodal vocal & eye engagement room
+          <p className="text-[11px] text-slate-500 font-normal">
+            Frontend Developer • React & App Router
           </p>
         </div>
       </div>
 
-      {/* Right Section: Stepper Counter, Timer, Pause & End Interview */}
-      <div className="flex items-center gap-3 justify-between md:justify-end">
-        {/* Question Counter */}
-        <div className="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300">
-          Question <span className="text-blue-400 font-bold">{currentQuestionNumber}</span> of {totalQuestions}
+      {/* Timer & Controls */}
+      <div className="flex items-center gap-3">
+        {/* Countdown Timer */}
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-stone-50 border border-stone-200">
+          <Clock className="w-3.5 h-3.5 text-violet-600" />
+          <span className="font-mono text-xs font-bold text-slate-900">
+            {formatTime(timerSeconds)}
+          </span>
         </div>
 
-        {/* Working Timer Badge */}
-        <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-white">
-          <Clock className="w-3.5 h-3.5 text-blue-400" />
-          <span>{formatTime(timerSeconds)}</span>
-        </div>
-
-        {/* Pause/Resume Action */}
+        {/* Pause / Resume Button */}
         <button
           onClick={onTogglePause}
-          className={`p-2 rounded-xl border text-xs font-semibold transition-all cursor-pointer ${
-            isPaused
-              ? "bg-amber-500/20 text-amber-300 border-amber-500/30"
-              : "bg-slate-900 hover:bg-slate-800 text-slate-300 border-slate-800"
-          }`}
-          title={isPaused ? "Resume Interview" : "Pause Interview"}
+          className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-stone-50 text-slate-700 text-xs font-bold border border-stone-200 transition-colors flex items-center gap-1.5 cursor-pointer shadow-2xs"
         >
-          {isPaused ? <Play className="w-4 h-4 fill-current text-amber-400" /> : <Pause className="w-4 h-4 text-slate-400" />}
+          {isPaused ? <Play className="w-3.5 h-3.5 text-violet-600 fill-current" /> : <Pause className="w-3.5 h-3.5 text-slate-500" />}
+          <span>{isPaused ? "Resume" : "Pause"}</span>
         </button>
 
-        {/* End Interview Action */}
+        {/* End Interview Button */}
         <button
           onClick={onOpenEndModal}
-          className="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-red-500/20 text-slate-300 hover:text-red-300 border border-slate-700 hover:border-red-500/30 text-xs font-semibold transition-colors flex items-center gap-1.5 cursor-pointer shrink-0"
+          className="px-3.5 py-1.5 rounded-xl bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold border border-red-200 transition-colors flex items-center gap-1.5 cursor-pointer"
         >
-          <LogOut className="w-3.5 h-3.5 text-slate-400" />
-          <span>End Interview</span>
+          <LogOut className="w-3.5 h-3.5" />
+          <span>End Session</span>
         </button>
       </div>
-    </header>
+    </div>
   );
 }

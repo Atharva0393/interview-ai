@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { CheckCircle2, Award, Code, MessageSquare, ShieldCheck, Zap } from "lucide-react";
+import { CheckCircle2, Award, Code, MessageSquare, Zap } from "lucide-react";
 
 export function StrengthsSection() {
   const strengths = [
@@ -28,9 +28,9 @@ export function StrengthsSection() {
   ];
 
   return (
-    <div className="p-6 rounded-2xl bg-[#111827]/80 backdrop-blur-md border border-[#1e293b] shadow-xl space-y-4">
-      <h3 className="text-base font-bold text-white flex items-center gap-2">
-        <Award className="w-4 h-4 text-emerald-400" />
+    <div className="p-6 rounded-2xl bg-white border border-[#e5e3de] shadow-2xs space-y-4">
+      <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+        <Award className="w-4 h-4 text-emerald-600" />
         Your Key Strengths
       </h3>
 
@@ -40,13 +40,13 @@ export function StrengthsSection() {
           return (
             <div
               key={item.title}
-              className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1.5"
+              className="p-4 rounded-xl bg-stone-50 border border-stone-200 space-y-1.5"
             >
-              <div className="flex items-center gap-2 text-xs font-bold text-white">
-                <Icon className="w-4 h-4 text-emerald-400 shrink-0" />
+              <div className="flex items-center gap-2 text-xs font-bold text-slate-900">
+                <Icon className="w-4 h-4 text-emerald-600 shrink-0" />
                 <span>{item.title}</span>
               </div>
-              <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
+              <p className="text-xs text-slate-500 leading-relaxed font-normal">{item.desc}</p>
             </div>
           );
         })}

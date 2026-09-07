@@ -6,17 +6,17 @@ import { MOCK_COMPARISON_DATA } from "./history-mock-data";
 
 export function PerformanceComparison() {
   return (
-    <div className="p-6 sm:p-8 rounded-3xl bg-[#111827]/80 backdrop-blur-md border border-[#1e293b] shadow-xl space-y-6">
+    <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#e5e3de] shadow-2xs space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h3 className="text-base font-bold text-white flex items-center gap-2">
-            <Award className="w-4 h-4 text-emerald-400" />
+          <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+            <Award className="w-4 h-4 text-emerald-600" />
             Latest vs First Interview Comparison
           </h3>
-          <p className="text-xs text-slate-400">Direct score delta comparison between Session #1 and Session #6</p>
+          <p className="text-xs text-slate-500 font-normal">Direct score delta comparison between Session #1 and Session #6</p>
         </div>
 
-        <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/50 border border-emerald-500/30 px-3 py-1 rounded-full font-bold">
+        <span className="text-[10px] font-mono text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full font-bold">
           Positive Trajectory Across All Metrics
         </span>
       </div>
@@ -26,27 +26,27 @@ export function PerformanceComparison() {
         {MOCK_COMPARISON_DATA.map((item) => (
           <div
             key={item.metric}
-            className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3 hover:border-blue-500/30 transition-colors"
+            className="p-4 rounded-2xl bg-stone-50 border border-stone-200 space-y-3 hover:border-violet-300 transition-colors"
           >
-            <div className="flex items-center justify-between text-xs font-bold text-slate-300">
+            <div className="flex items-center justify-between text-xs font-bold text-slate-800">
               <span>{item.metric}</span>
-              <span className="px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[11px] font-extrabold flex items-center gap-1">
-                <TrendingUp className="w-3 h-3" />
+              <span className="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px] font-extrabold flex items-center gap-1">
+                <TrendingUp className="w-3 h-3 text-emerald-600" />
                 {item.change}
               </span>
             </div>
 
-            <div className="flex items-center justify-between p-3 rounded-xl bg-slate-950/70 border border-slate-800">
+            <div className="flex items-center justify-between p-3 rounded-xl bg-white border border-stone-200 shadow-2xs">
               <div className="text-center">
                 <span className="text-[10px] text-slate-500 font-semibold block">First Session</span>
-                <span className="text-base font-bold text-slate-400">{item.first}%</span>
+                <span className="text-base font-bold text-slate-500">{item.first}%</span>
               </div>
 
-              <ArrowRight className="w-4 h-4 text-blue-400" />
+              <ArrowRight className="w-4 h-4 text-violet-600" />
 
               <div className="text-center">
-                <span className="text-[10px] text-blue-400 font-semibold block">Latest Session</span>
-                <span className="text-lg font-extrabold text-white">{item.latest}%</span>
+                <span className="text-[10px] text-violet-800 font-bold block">Latest Session</span>
+                <span className="text-lg font-extrabold text-slate-900">{item.latest}%</span>
               </div>
             </div>
           </div>

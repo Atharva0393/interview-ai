@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { History, Filter, ArrowUpDown } from "lucide-react";
-import { MOCK_HISTORICAL_SESSIONS, HistoricalInterview } from "./history-mock-data";
+import { History, Filter } from "lucide-react";
+import { MOCK_HISTORICAL_SESSIONS } from "./history-mock-data";
 import { InterviewHistoryCard } from "./interview-history-card";
 
 export function InterviewHistoryList() {
@@ -22,15 +22,15 @@ export function InterviewHistoryList() {
   });
 
   return (
-    <div className="p-6 sm:p-8 rounded-3xl bg-[#111827]/80 backdrop-blur-md border border-[#1e293b] shadow-xl space-y-6">
+    <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#e5e3de] shadow-2xs space-y-6">
       {/* List Header & Controls */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div>
-          <h3 className="text-base font-bold text-white flex items-center gap-2">
-            <History className="w-4 h-4 text-blue-400" />
+          <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+            <History className="w-4 h-4 text-violet-600" />
             Previous Mock Interviews
           </h3>
-          <p className="text-xs text-slate-400">Review all 6 historical interview session logs</p>
+          <p className="text-xs text-slate-500 font-normal">Review all 6 historical interview session logs</p>
         </div>
 
         {/* Filter Controls */}
@@ -39,7 +39,7 @@ export function InterviewHistoryList() {
           <select
             value={selectedType}
             onChange={(e) => setSelectedType(e.target.value)}
-            className="bg-slate-900 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-blue-500 cursor-pointer"
+            className="bg-white border border-stone-200 rounded-xl px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-violet-400 cursor-pointer shadow-2xs font-bold"
           >
             <option value="All">All Types</option>
             <option value="Technical">Technical</option>
@@ -51,7 +51,7 @@ export function InterviewHistoryList() {
           <select
             value={selectedDifficulty}
             onChange={(e) => setSelectedDifficulty(e.target.value)}
-            className="bg-slate-900 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-blue-500 cursor-pointer"
+            className="bg-white border border-stone-200 rounded-xl px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-violet-400 cursor-pointer shadow-2xs font-bold"
           >
             <option value="All">All Difficulties</option>
             <option value="Beginner">Beginner</option>
@@ -63,7 +63,7 @@ export function InterviewHistoryList() {
           <select
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value as any)}
-            className="bg-slate-900 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-blue-500 cursor-pointer"
+            className="bg-white border border-stone-200 rounded-xl px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-violet-400 cursor-pointer shadow-2xs font-bold"
           >
             <option value="newest">Newest First</option>
             <option value="oldest">Oldest First</option>
@@ -79,18 +79,18 @@ export function InterviewHistoryList() {
             <InterviewHistoryCard key={session.id} session={session} />
           ))
         ) : (
-          <div className="p-8 text-center rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3">
-            <Filter className="w-8 h-8 text-slate-500 mx-auto" />
+          <div className="p-8 text-center rounded-2xl bg-stone-50 border border-stone-200 space-y-3">
+            <Filter className="w-8 h-8 text-slate-400 mx-auto" />
             <div className="space-y-1">
-              <h4 className="text-sm font-bold text-white">No Matching Interview Logs</h4>
-              <p className="text-xs text-slate-400">Try adjusting your type or difficulty filters to see your session history.</p>
+              <h4 className="text-sm font-bold text-slate-900">No Matching Interview Logs</h4>
+              <p className="text-xs text-slate-500 font-normal">Try adjusting your type or difficulty filters to see your session history.</p>
             </div>
             <button
               onClick={() => {
                 setSelectedType("All");
                 setSelectedDifficulty("All");
               }}
-              className="px-4 py-2 rounded-xl bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 text-xs font-semibold transition-colors cursor-pointer"
+              className="px-4 py-2 rounded-xl bg-violet-50 hover:bg-violet-100 text-violet-800 border border-violet-200 text-xs font-bold transition-colors cursor-pointer"
             >
               Reset Filters
             </button>

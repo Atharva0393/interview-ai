@@ -15,32 +15,32 @@ export function ProcessingMetrics({ progress }: ProcessingMetricsProps) {
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-      <div className="p-4 rounded-2xl bg-[#111827]/80 border border-[#1e293b] text-center space-y-1">
-        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+      <div className="p-4 rounded-2xl bg-white border border-[#e5e3de] text-center space-y-1 shadow-2xs">
+        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
           Response Relevance
         </span>
-        <div className="text-xl sm:text-2xl font-extrabold text-blue-400">{responseRel}%</div>
+        <div className="text-xl sm:text-2xl font-extrabold text-violet-700">{responseRel}%</div>
       </div>
 
-      <div className="p-4 rounded-2xl bg-[#111827]/80 border border-[#1e293b] text-center space-y-1">
-        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+      <div className="p-4 rounded-2xl bg-white border border-[#e5e3de] text-center space-y-1 shadow-2xs">
+        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
           Speech Fluency
         </span>
-        <div className="text-xl sm:text-2xl font-extrabold text-violet-400">{speechFluency}%</div>
+        <div className="text-xl sm:text-2xl font-extrabold text-violet-700">{speechFluency}%</div>
       </div>
 
-      <div className="p-4 rounded-2xl bg-[#111827]/80 border border-[#1e293b] text-center space-y-1">
-        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+      <div className="p-4 rounded-2xl bg-white border border-[#e5e3de] text-center space-y-1 shadow-2xs">
+        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
           Eye Contact
         </span>
-        <div className="text-xl sm:text-2xl font-extrabold text-emerald-400">{eyeContact}%</div>
+        <div className="text-xl sm:text-2xl font-extrabold text-emerald-700">{eyeContact}%</div>
       </div>
 
-      <div className="p-4 rounded-2xl bg-[#111827]/80 border border-[#1e293b] text-center space-y-1">
-        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+      <div className="p-4 rounded-2xl bg-white border border-[#e5e3de] text-center space-y-1 shadow-2xs">
+        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
           Confidence
         </span>
-        <div className="text-xl sm:text-2xl font-extrabold text-amber-400">{confidence}%</div>
+        <div className="text-xl sm:text-2xl font-extrabold text-slate-900">{confidence}%</div>
       </div>
     </div>
   );

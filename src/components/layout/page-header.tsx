@@ -24,59 +24,59 @@ export function PageHeader() {
   };
 
   return (
-    <header className="hidden md:flex h-20 px-8 items-center justify-between border-b border-[#1e293b]/80 bg-[#0b0f19]/80 backdrop-blur-md sticky top-0 z-30">
+    <header className="hidden md:flex h-16 px-8 items-center justify-between border-b border-[#e5e3de] bg-[#f9f8f6]/80 backdrop-blur-md sticky top-0 z-30">
       {/* Page Title & Breadcrumb */}
       <div>
-        <h1 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+        <h1 className="text-base font-bold text-slate-900 tracking-tight flex items-center gap-2">
           {meta.title}
         </h1>
-        <p className="text-xs text-slate-400 font-medium mt-0.5">{meta.subtitle}</p>
+        <p className="text-xs text-slate-500 font-normal mt-0.5">{meta.subtitle}</p>
       </div>
 
       {/* Top Header Utilities */}
       <div className="flex items-center gap-4">
-        {/* Search Input Bar Placeholder */}
-        <div className="relative w-64 hidden xl:block">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+        {/* Search Input Bar */}
+        <div className="relative w-60 hidden xl:block">
+          <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             placeholder="Search questions, roles..."
             readOnly
-            className="w-full bg-[#111827] border border-[#1e293b] rounded-xl pl-9 pr-8 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500/50 cursor-pointer"
+            className="w-full bg-white border border-[#e5e3de] rounded-xl pl-9 pr-8 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-violet-400 cursor-pointer shadow-2xs"
           />
-          <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-0.5 text-[10px] font-mono text-slate-500 bg-slate-800/80 px-1.5 py-0.5 rounded">
+          <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-0.5 text-[9px] font-mono text-slate-400 bg-stone-100 px-1.5 py-0.5 rounded border border-stone-200">
             <Command className="w-2.5 h-2.5" />
             <span>K</span>
           </div>
         </div>
 
         {/* AI Status Badge */}
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-950/40 border border-blue-500/30">
+        <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 border border-violet-200">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-600"></span>
           </span>
-          <span className="text-xs font-semibold text-blue-300 flex items-center gap-1">
-            <Sparkles className="w-3 h-3 text-blue-400" />
+          <span className="text-xs font-semibold text-violet-800 flex items-center gap-1">
+            <Sparkles className="w-3 h-3 text-violet-600" />
             AI Ready
           </span>
         </div>
 
         {/* Notifications Icon */}
         <button
-          className="relative p-2 rounded-xl bg-[#111827] border border-[#1e293b] text-slate-400 hover:text-white hover:border-slate-700 transition-colors"
+          className="relative p-2 rounded-xl bg-white border border-[#e5e3de] text-slate-500 hover:text-slate-900 hover:border-slate-300 transition-colors shadow-2xs"
           aria-label="Notifications"
         >
-          <Bell className="w-4 h-4" />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-blue-500"></span>
+          <Bell className="w-3.5 h-3.5" />
+          <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-violet-600"></span>
         </button>
 
         {/* User Mini Card */}
-        <div className="flex items-center gap-2 pl-2 border-l border-[#1e293b]">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-600 to-violet-600 flex items-center justify-center text-xs font-bold text-white">
+        <div className="flex items-center gap-2 pl-2 border-l border-[#e5e3de]">
+          <div className="w-7 h-7 rounded-full bg-violet-600 flex items-center justify-center text-xs font-bold text-white shadow-2xs">
             {MOCK_USER_PROFILE.name.charAt(0)}
           </div>
-          <span className="text-xs font-semibold text-slate-200 hidden lg:inline-block">
+          <span className="text-xs font-bold text-slate-800 hidden lg:inline-block">
             {MOCK_USER_PROFILE.name}
           </span>
         </div>

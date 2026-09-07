@@ -17,22 +17,22 @@ export function SkillProgress() {
   const [activeKey, setActiveKey] = useState<string>("all");
 
   return (
-    <div className="p-6 sm:p-8 rounded-3xl bg-[#111827]/80 backdrop-blur-md border border-[#1e293b] shadow-xl space-y-6">
+    <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#e5e3de] shadow-2xs space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h3 className="text-base font-bold text-white flex items-center gap-2">
-            <Activity className="w-4 h-4 text-violet-400" />
+          <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+            <Activity className="w-4 h-4 text-violet-600" />
             How Your Skills Have Improved
           </h3>
-          <p className="text-xs text-slate-400">Track skill domain evolution across all 6 mock sessions</p>
+          <p className="text-xs text-slate-500 font-normal">Track skill domain evolution across all 6 mock sessions</p>
         </div>
 
         {/* Legend Interactive Toggles */}
-        <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-semibold">
+        <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-bold">
           {[
             { key: "all", label: "All Skills" },
-            { key: "technical", label: "Technical", color: "#3b82f6" },
-            { key: "communication", label: "Communication", color: "#8b5cf6" },
+            { key: "technical", label: "Technical", color: "#7c3aed" },
+            { key: "communication", label: "Communication", color: "#6366f1" },
             { key: "confidence", label: "Confidence", color: "#10b981" },
             { key: "problemSolving", label: "Problem Solving", color: "#f59e0b" },
           ].map((item) => (
@@ -41,8 +41,8 @@ export function SkillProgress() {
               onClick={() => setActiveKey(item.key)}
               className={`px-2.5 py-1 rounded-lg border transition-colors cursor-pointer ${
                 activeKey === item.key
-                  ? "bg-slate-800 text-white border-slate-600"
-                  : "bg-slate-900/60 text-slate-400 border-slate-800 hover:text-slate-200"
+                  ? "bg-violet-600 text-white border-violet-600 shadow-2xs"
+                  : "bg-stone-50 text-slate-600 border-stone-200 hover:text-slate-900"
               }`}
             >
               {item.color && (
@@ -62,16 +62,17 @@ export function SkillProgress() {
         <div className="lg:col-span-8 h-64 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={MOCK_TREND_DATA} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-              <XAxis dataKey="session" stroke="#64748b" fontSize={11} />
-              <YAxis domain={[65, 95]} stroke="#64748b" fontSize={11} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e3de" />
+              <XAxis dataKey="session" stroke="#64748b" fontSize={11} fontWeight={600} />
+              <YAxis domain={[65, 95]} stroke="#64748b" fontSize={11} fontWeight={600} />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "#0b0f19",
-                  borderColor: "#1e293b",
+                  backgroundColor: "#ffffff",
+                  borderColor: "#e5e3de",
                   borderRadius: "12px",
-                  color: "#ffffff",
+                  color: "#111827",
                   fontSize: "12px",
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
                 }}
               />
 
@@ -80,7 +81,7 @@ export function SkillProgress() {
                   type="monotone"
                   dataKey="technical"
                   name="Technical"
-                  stroke="#3b82f6"
+                  stroke="#7c3aed"
                   strokeWidth={2}
                   dot={{ r: 4 }}
                 />
@@ -91,7 +92,7 @@ export function SkillProgress() {
                   type="monotone"
                   dataKey="communication"
                   name="Communication"
-                  stroke="#8b5cf6"
+                  stroke="#6366f1"
                   strokeWidth={2}
                   dot={{ r: 4 }}
                 />
@@ -123,22 +124,22 @@ export function SkillProgress() {
         </div>
 
         {/* Insight Card (4 cols) */}
-        <div className="lg:col-span-4 p-5 rounded-2xl bg-gradient-to-br from-violet-950/40 to-blue-950/40 border border-violet-500/20 space-y-3">
-          <div className="flex items-center gap-2 text-xs font-bold text-white">
-            <Sparkles className="w-4 h-4 text-violet-400" />
+        <div className="lg:col-span-4 p-5 rounded-2xl bg-stone-50 border border-stone-200 space-y-3">
+          <div className="flex items-center gap-2 text-xs font-bold text-slate-900">
+            <Sparkles className="w-4 h-4 text-violet-600" />
             <span>Skill Growth Insight</span>
           </div>
 
-          <p className="text-xs text-slate-300 leading-relaxed italic">
+          <p className="text-xs text-slate-600 leading-relaxed italic font-normal">
             &ldquo;Your strongest improvement has been in communication (+8%) and confidence (+9%), while problem-solving (+8%) remains the biggest opportunity for growth.&rdquo;
           </p>
 
-          <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800 text-[11px] text-slate-400 space-y-1">
-            <div className="flex items-center justify-between font-semibold text-slate-300">
+          <div className="p-3 rounded-xl bg-white border border-stone-200 text-[11px] text-slate-500 space-y-1">
+            <div className="flex items-center justify-between font-bold text-slate-800">
               <span>Top Skill Booster</span>
-              <span className="text-emerald-400 font-bold">Confidence (+9%)</span>
+              <span className="text-emerald-700 font-extrabold">Confidence (+9%)</span>
             </div>
-            <p>Fluency and response structure improved significantly.</p>
+            <p className="font-normal">Fluency and response structure improved significantly.</p>
           </div>
         </div>
       </div>

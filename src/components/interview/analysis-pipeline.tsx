@@ -43,8 +43,8 @@ interface AnalysisPipelineProps {
 
 export function AnalysisPipeline({ currentStageId }: AnalysisPipelineProps) {
   return (
-    <div className="p-6 rounded-2xl bg-[#111827]/80 backdrop-blur-md border border-[#1e293b] shadow-xl space-y-4">
-      <h3 className="text-sm font-bold text-white uppercase tracking-wider text-slate-300">
+    <div className="p-6 rounded-2xl bg-white border border-[#e5e3de] shadow-2xs space-y-4">
+      <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
         AI Evaluation Pipeline
       </h3>
 
@@ -58,19 +58,19 @@ export function AnalysisPipeline({ currentStageId }: AnalysisPipelineProps) {
               key={stage.id}
               className={`p-3.5 rounded-xl border transition-all duration-300 flex items-start gap-3.5 ${
                 isCurrent
-                  ? "bg-blue-600/10 border-blue-500/40 shadow-md shadow-blue-500/10"
+                  ? "bg-violet-50/80 border-violet-300 shadow-2xs"
                   : isCompleted
-                  ? "bg-slate-900/60 border-slate-800"
-                  : "bg-slate-950/40 border-slate-900 opacity-60"
+                  ? "bg-stone-50 border-stone-200"
+                  : "bg-stone-50/40 border-stone-200/60 opacity-60"
               }`}
             >
               <div className="mt-0.5 shrink-0">
                 {isCompleted ? (
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                 ) : isCurrent ? (
-                  <Loader2 className="w-4 h-4 text-blue-400 animate-spin" />
+                  <Loader2 className="w-4 h-4 text-violet-600 animate-spin" />
                 ) : (
-                  <Circle className="w-4 h-4 text-slate-600" />
+                  <Circle className="w-4 h-4 text-slate-400" />
                 )}
               </div>
 
@@ -78,15 +78,15 @@ export function AnalysisPipeline({ currentStageId }: AnalysisPipelineProps) {
                 <div
                   className={`text-xs font-bold ${
                     isCurrent
-                      ? "text-white"
+                      ? "text-violet-900"
                       : isCompleted
-                      ? "text-slate-200"
-                      : "text-slate-500"
+                      ? "text-slate-900"
+                      : "text-slate-400"
                   }`}
                 >
                   {stage.title}
                 </div>
-                <p className="text-[11px] text-slate-400 leading-snug">{stage.desc}</p>
+                <p className="text-[11px] text-slate-500 font-normal leading-snug">{stage.desc}</p>
               </div>
             </div>
           );
