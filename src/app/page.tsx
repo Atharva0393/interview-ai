@@ -5,6 +5,7 @@ import { Sparkles, BarChart2, Cpu, Video } from "lucide-react";
 import { HowItWorks } from "@/components/ui/how-it-works";
 import { AnalysisDimensions } from "@/components/ui/analysis-dimensions";
 import ArrowFillButton from "@/components/ui/arrow-fill-button";
+import { GlowCard } from "@/components/ui/spotlight-card";
 
 export default function LandingPage() {
   return (
@@ -74,35 +75,41 @@ export default function LandingPage() {
 
         {/* Feature Highlights Grid */}
         <div className="max-w-6xl mx-auto w-full grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
-          <div className="p-6 rounded-2xl bg-white border border-stone-200/80 shadow-2xs space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center mb-2">
-              <Cpu className="w-5 h-5" />
+          <GlowCard customSize className="w-full h-full min-h-[200px]" glowColor="blue">
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center mb-2">
+                <Cpu className="w-5 h-5" />
+              </div>
+              <h3 className="text-base font-bold text-slate-900">01. Resume Context</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Extract core technical skills and map your candidate profile against target job role requirements.
+              </p>
             </div>
-            <h3 className="text-base font-bold text-slate-900">01. Resume Context</h3>
-            <p className="text-xs text-slate-500 leading-relaxed">
-              Extract core technical skills and map your candidate profile against target job role requirements.
-            </p>
-          </div>
+          </GlowCard>
 
-          <div className="p-6 rounded-2xl bg-white border border-stone-200/80 shadow-2xs space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center mb-2">
-              <Video className="w-5 h-5" />
+          <GlowCard customSize className="w-full h-full min-h-[200px]" glowColor="purple">
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center mb-2">
+                <Video className="w-5 h-5" />
+              </div>
+              <h3 className="text-base font-bold text-slate-900">02. Live Practice Room</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Webcam video feed preview, vocal pacing waveforms, and dynamic adaptive technical questions.
+              </p>
             </div>
-            <h3 className="text-base font-bold text-slate-900">02. Live Practice Room</h3>
-            <p className="text-xs text-slate-500 leading-relaxed">
-              Webcam video feed preview, vocal pacing waveforms, and dynamic adaptive technical questions.
-            </p>
-          </div>
+          </GlowCard>
 
-          <div className="p-6 rounded-2xl bg-white border border-stone-200/80 shadow-2xs space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center mb-2">
-              <BarChart2 className="w-5 h-5" />
+          <GlowCard customSize className="w-full h-full min-h-[200px]" glowColor="green">
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center mb-2">
+                <BarChart2 className="w-5 h-5" />
+              </div>
+              <h3 className="text-base font-bold text-slate-900">03. Performance Reports</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Comprehensive performance metrics across communication, eye contact, and technical answer depth.
+              </p>
             </div>
-            <h3 className="text-base font-bold text-slate-900">03. Performance Reports</h3>
-            <p className="text-xs text-slate-500 leading-relaxed">
-              Comprehensive performance metrics across communication, eye contact, and technical answer depth.
-            </p>
-          </div>
+          </GlowCard>
         </div>
 
         {/* Integrated Product Feedback Loop Timeline */}
