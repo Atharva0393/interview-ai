@@ -74,9 +74,28 @@ export function InterviewHistoryList() {
 
       {/* Render Cards List */}
       <div className="space-y-3">
-        {filteredSessions.map((session) => (
-          <InterviewHistoryCard key={session.id} session={session} />
-        ))}
+        {filteredSessions.length > 0 ? (
+          filteredSessions.map((session) => (
+            <InterviewHistoryCard key={session.id} session={session} />
+          ))
+        ) : (
+          <div className="p-8 text-center rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3">
+            <Filter className="w-8 h-8 text-slate-500 mx-auto" />
+            <div className="space-y-1">
+              <h4 className="text-sm font-bold text-white">No Matching Interview Logs</h4>
+              <p className="text-xs text-slate-400">Try adjusting your type or difficulty filters to see your session history.</p>
+            </div>
+            <button
+              onClick={() => {
+                setSelectedType("All");
+                setSelectedDifficulty("All");
+              }}
+              className="px-4 py-2 rounded-xl bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 text-xs font-semibold transition-colors cursor-pointer"
+            >
+              Reset Filters
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
