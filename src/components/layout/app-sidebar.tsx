@@ -52,7 +52,6 @@ export function AppSidebar() {
                 PRO
               </span>
             </div>
-            <p className="text-[10px] text-stone-400 font-normal leading-none mt-0.5">Workspace</p>
           </div>
         </Link>
       </div>

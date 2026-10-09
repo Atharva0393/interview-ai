@@ -18,9 +18,6 @@ export default function LandingPage() {
           </div>
           <div>
             <span className="font-extrabold text-lg tracking-tight text-slate-900">InterviewAI</span>
-            <span className="ml-2 px-2 py-0.5 text-[10px] font-bold bg-stone-200 text-slate-800 border border-stone-300 rounded-md">
-              Workspace
-            </span>
           </div>
         </div>
 
