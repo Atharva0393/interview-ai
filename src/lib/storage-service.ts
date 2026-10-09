@@ -92,7 +92,11 @@ export function loadSavedSessionConfig(): InterviewSessionConfig | null {
 export function saveSessionResult(result: SessionResultReport): void {
   if (typeof window === "undefined") return;
   try {
-    localStorage.setItem(LAST_RESULT_KEY, JSON.stringify(result));
+    const versioned: SessionResultReport = {
+      ...result,
+      schemaVersion: result.schemaVersion || 2,
+    };
+    localStorage.setItem(LAST_RESULT_KEY, JSON.stringify(versioned));
   } catch (e) {
     console.error("Failed to save session result", e);
   }
@@ -103,7 +107,12 @@ export function loadSavedSessionResult(): SessionResultReport | null {
   try {
     const raw = localStorage.getItem(LAST_RESULT_KEY);
     if (!raw) return null;
-    return JSON.parse(raw);
+    const parsed = JSON.parse(raw);
+    // Backward compatibility: If no schemaVersion, treat as Phase 1 (v1)
+    if (!parsed.schemaVersion) {
+      parsed.schemaVersion = 1;
+    }
+    return parsed;
   } catch (e) {
     return null;
   }

@@ -116,7 +116,52 @@ export interface InterviewSessionConfig {
   voiceAnalysis?: boolean;
 }
 
+export interface SpeechMetrics {
+  totalDurationSec: number;
+  speakingDurationSec: number;
+  pauseDurationSec: number;
+  pauseCount: number;
+  wordCount: number;
+  speakingRateWpm: number | null;
+  fillerWordCount: number;
+  fillerWords: Record<string, number>;
+  averageVolumeRms: number | null;
+  volumeConsistencyPct: number | null;
+  audioQuality: "optimal" | "low_input" | "noisy" | "unavailable";
+  isReliable: boolean;
+  availabilityNotes?: string;
+}
+
+export interface GazeMetrics {
+  totalObservedSec: number;
+  validTrackingSec: number;
+  screenDirectedSec: number;
+  offScreenSec: number;
+  screenDirectedPct: number | null;
+  faceDetectedPct: number;
+  headPose: {
+    yawDegrees: number;
+    pitchDegrees: number;
+    rollDegrees: number;
+  };
+  trackingQuality: "optimal" | "partial" | "low_light" | "no_face" | "unavailable";
+  statusLabel: "Face detected" | "Head oriented toward screen" | "Estimated screen-directed gaze" | "Tracking unavailable";
+  isReliable: boolean;
+  availabilityNotes?: string;
+}
+
+export interface QuestionSessionAnalytics {
+  questionId: string;
+  questionNumber: number;
+  questionText: string;
+  transcript: string;
+  speechMetrics?: SpeechMetrics;
+  gazeMetrics?: GazeMetrics;
+  evaluation?: AIAnswerEvaluation;
+}
+
 export interface SessionResultReport {
+  schemaVersion?: number; // 1 = Phase 1, 2 = Phase 2
   sessionId?: string;
   role?: string;
   date?: string;
@@ -124,6 +169,7 @@ export interface SessionResultReport {
   communicationScore?: number;
   technicalScore?: number;
   confidenceScore?: number;
+  speechDeliveryScore?: number; // Separate delivery score from technical score
   breakdown?: {
     technical: number;
     communication: number;
@@ -134,6 +180,21 @@ export interface SessionResultReport {
   areasForImprovement?: string[];
   evaluations?: AIAnswerEvaluation[];
   questionEvaluations?: AIAnswerEvaluation[];
+  questionAnalytics?: QuestionSessionAnalytics[];
+  speechSummary?: {
+    averageWpm: number | null;
+    totalFillerWords: number;
+    totalPauseCount: number;
+    fillerWordsFrequency: Record<string, number>;
+    audioMeasurementQuality: string;
+  };
+  gazeSummary?: {
+    overallScreenDirectedPct: number | null;
+    validTrackingSeconds: number;
+    totalInterviewSeconds: number;
+    trackingQuality: string;
+    observationsSummary: string;
+  };
   summaryStrengths?: string[];
   summaryImprovements?: string[];
   recommendedTopics?: string[];
