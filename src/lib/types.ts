@@ -51,6 +51,8 @@ export interface CandidateProfileAnalysis {
   projects?: Array<{ title: string; tech: string[]; description: string }>;
   potentialFollowUpAreas?: string[];
   inferredDetails?: string[];
+  isAiGenerated?: boolean;
+  source?: "gemini" | "fallback";
 }
 
 export interface AIQuestion {
@@ -66,6 +68,8 @@ export interface AIQuestion {
   suggestedFollowUps: string[];
   isApproved?: boolean;
   isCustom?: boolean;
+  isAiGenerated?: boolean;
+  source?: "gemini" | "fallback";
 }
 
 export interface AIAnswerEvaluation {
@@ -89,6 +93,8 @@ export interface AIAnswerEvaluation {
   improvementTip: string;
   strengths?: string[];
   improvements?: string[];
+  isAiGenerated?: boolean;
+  source?: "gemini" | "fallback";
 }
 
 export interface InterviewSessionConfig {

@@ -19,7 +19,12 @@ export async function POST(req: Request) {
       fileName || "Resume.pdf"
     );
 
-    return NextResponse.json({ success: true, analysis });
+    return NextResponse.json({
+      success: true,
+      analysis,
+      isAiGenerated: analysis.isAiGenerated,
+      source: analysis.source,
+    });
   } catch (error: any) {
     console.error("API /api/ai/analyze-resume error:", error);
     return NextResponse.json(

@@ -21,7 +21,12 @@ export async function POST(req: Request) {
       resumeContext,
     });
 
-    return NextResponse.json({ success: true, evaluation });
+    return NextResponse.json({
+      success: true,
+      evaluation,
+      isAiGenerated: evaluation.isAiGenerated,
+      source: evaluation.source,
+    });
   } catch (error: any) {
     console.error("API /api/ai/evaluate-answer error:", error);
     return NextResponse.json(

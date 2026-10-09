@@ -22,6 +22,8 @@ export async function analyzeResumeWithGemini(
       ...MOCK_RESUME_ANALYSIS,
       fileName,
       uploadDate: new Date().toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" }),
+      isAiGenerated: false,
+      source: "fallback",
     };
   }
 
@@ -75,6 +77,8 @@ Respond ONLY with valid JSON matching this exact structure:
       education: Array.isArray(parsed.education) ? parsed.education : ["B.S. Computer Science"],
       projects: [],
       potentialFollowUpAreas: Array.isArray(parsed.potentialFollowUpAreas) ? parsed.potentialFollowUpAreas : ["State management trade-offs"],
+      isAiGenerated: true,
+      source: "gemini",
     };
   } catch (error) {
     console.error("Gemini analyzeResume error:", error);
@@ -82,6 +86,8 @@ Respond ONLY with valid JSON matching this exact structure:
       ...MOCK_RESUME_ANALYSIS,
       fileName,
       uploadDate: new Date().toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" }),
+      isAiGenerated: false,
+      source: "fallback",
     };
   }
 }
@@ -113,6 +119,8 @@ export async function generatePersonalizedQuestionsWithGemini(params: {
       suggestedFollowUps: ["How did you measure the performance impact?", "What alternative approach did you consider?"],
       isApproved: true,
       isCustom: false,
+      isAiGenerated: false,
+      source: "fallback",
     }));
   }
 
@@ -172,6 +180,8 @@ Respond ONLY with valid JSON matching this exact structure:
         suggestedFollowUps: Array.isArray(item.suggestedFollowUps) ? item.suggestedFollowUps : ["What trade-offs did you make?"],
         isApproved: true,
         isCustom: false,
+        isAiGenerated: true,
+        source: "gemini",
       }));
     }
 
@@ -191,6 +201,8 @@ Respond ONLY with valid JSON matching this exact structure:
       suggestedFollowUps: ["How did you measure the impact?"],
       isApproved: true,
       isCustom: false,
+      isAiGenerated: false,
+      source: "fallback",
     }));
   }
 }
@@ -226,6 +238,8 @@ export async function evaluateAnswerWithGemini(params: {
         ? "Answer was brief. Expand on technical trade-offs and specific project outcomes using the STAR method."
         : "Strong structured answer with clear technical reasoning and relevant anecdote delivery.",
       improvementTip: "Include quantitative metrics (e.g. % latency reduction) to demonstrate impact.",
+      isAiGenerated: false,
+      source: "fallback",
     };
   }
 
@@ -293,6 +307,8 @@ Respond ONLY with valid JSON matching this exact structure:
       },
       feedback: parsed.feedback || "Good response structure.",
       improvementTip: parsed.improvementTip || "State your specific role and measurable results.",
+      isAiGenerated: true,
+      source: "gemini",
     };
   } catch (error) {
     console.error("Gemini evaluateAnswer error:", error);
@@ -309,6 +325,8 @@ Respond ONLY with valid JSON matching this exact structure:
       starEvaluation: { situation: true, task: true, action: true, result: false },
       feedback: "Answer addressed main prompt requirements.",
       improvementTip: "Use STAR methodology with clear outcome metrics.",
+      isAiGenerated: false,
+      source: "fallback",
     };
   }
 }

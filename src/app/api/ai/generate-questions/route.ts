@@ -26,7 +26,10 @@ export async function POST(req: Request) {
       focusAreas,
     });
 
-    return NextResponse.json({ success: true, questions });
+    const isAiGenerated = questions.length > 0 ? questions[0].isAiGenerated : false;
+    const source = questions.length > 0 ? questions[0].source : "fallback";
+
+    return NextResponse.json({ success: true, questions, isAiGenerated, source });
   } catch (error: any) {
     console.error("API /api/ai/generate-questions error:", error);
     return NextResponse.json(
