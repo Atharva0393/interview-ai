@@ -2,21 +2,35 @@
 
 import React, { useState, useEffect } from "react";
 import { ShieldCheck, TrendingUp } from "lucide-react";
+import { loadSavedSessionResult } from "@/lib/storage-service";
+import { SessionResultReport } from "@/lib/types";
 
 export function OverallScore() {
+  const [result, setResult] = useState<SessionResultReport | null>(null);
   const [animatedScore, setAnimatedScore] = useState(0);
 
   useEffect(() => {
+    const saved = loadSavedSessionResult();
+    if (saved) {
+      setResult(saved);
+    }
+
+    const targetScore = saved ? saved.overallScore : 84;
     const timer = setInterval(() => {
       setAnimatedScore((prev) => {
-        if (prev < 84) return prev + 2;
+        if (prev < targetScore) return prev + 2;
         clearInterval(timer);
-        return 84;
+        return targetScore;
       });
     }, 25);
 
     return () => clearInterval(timer);
   }, []);
+
+  const technical = result?.breakdown?.technical ?? 88;
+  const communication = result?.breakdown?.communication ?? 84;
+  const problemSolving = result?.breakdown?.problemSolving ?? 85;
+  const behavioral = result?.breakdown?.behavioral ?? 81;
 
   return (
     <div className="p-6 sm:p-8 rounded-3xl bg-white border border-stone-200/80 shadow-2xs space-y-6">
@@ -25,7 +39,7 @@ export function OverallScore() {
         <div className="space-y-3 max-w-xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-bold text-emerald-800">
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-            <span>Performance Classification: Strong Performance</span>
+            <span>Performance Classification: {animatedScore >= 80 ? "Strong Performance" : "Developing Performance"}</span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -38,16 +52,16 @@ export function OverallScore() {
 
           <div className="pt-2 flex flex-wrap gap-2 text-xs font-bold">
             <span className="px-3 py-1.5 rounded-xl bg-stone-100 text-slate-900 border border-stone-200">
-              Technical: <strong className="text-slate-900">88%</strong>
+              Technical: <strong className="text-slate-900">{technical}%</strong>
             </span>
             <span className="px-3 py-1.5 rounded-xl bg-stone-100 text-slate-900 border border-stone-200">
-              Communication: <strong className="text-slate-900">84%</strong>
+              Communication: <strong className="text-slate-900">{communication}%</strong>
             </span>
             <span className="px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200">
-              Confidence: <strong className="text-slate-900">81%</strong>
+              Problem Solving: <strong className="text-slate-900">{problemSolving}%</strong>
             </span>
             <span className="px-3 py-1.5 rounded-xl bg-stone-100 text-slate-800 border border-stone-200">
-              Engagement: <strong className="text-slate-900">86%</strong>
+              Behavioral: <strong className="text-slate-900">{behavioral}%</strong>
             </span>
           </div>
         </div>

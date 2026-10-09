@@ -14,21 +14,68 @@ import { CameraAnalysis } from "@/components/interview/camera-analysis";
 import { VoiceAnalysis } from "@/components/interview/voice-analysis";
 import { PerformanceIndicators } from "@/components/interview/performance-indicators";
 import { InterviewEndModal } from "@/components/interview/interview-end-modal";
+import { TextAnswerInput } from "@/components/interview/text-answer-input";
+import { AIAnswerEvaluation, AIQuestion, SessionResultReport } from "@/lib/types";
+import { loadSavedSessionConfig, saveSessionResult } from "@/lib/storage-service";
 import { Pause, Play } from "lucide-react";
 
 export default function InterviewSessionPage() {
   const router = useRouter();
 
   // Navigation & Question State
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // Start at Question 1
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [timerSeconds, setTimerSeconds] = useState(1200); // 20:00 countdown
+  const [timerSeconds, setTimerSeconds] = useState(1200);
   const [isEndModalOpen, setIsEndModalOpen] = useState(false);
+  const [sessionRole, setSessionRole] = useState("Frontend Developer");
+
+  // Dynamic Session Questions from Setup
+  const [activeQuestions, setActiveQuestions] = useState<any[]>(MOCK_INTERVIEW_QUESTIONS_10);
+
+  // Candidate Answer State & AI Evaluations
+  const [candidateAnswers, setCandidateAnswers] = useState<Record<string, string>>({});
+  const [evaluations, setEvaluations] = useState<Record<string, AIAnswerEvaluation>>({});
+  const [isEvaluating, setIsEvaluating] = useState(false);
 
   // Fluctuating Telemetry State
   const [telemetryDelta, setTelemetryDelta] = useState(0);
 
-  const currentQuestion = MOCK_INTERVIEW_QUESTIONS_10[currentQuestionIndex];
+  // Load Session Config on Mount
+  useEffect(() => {
+    const config = loadSavedSessionConfig();
+    if (config && config.questions && config.questions.length > 0) {
+      setSessionRole(config.role || "Software Engineer");
+      // Map AIQuestions to page question schema
+      const mapped = config.questions.map((q: AIQuestion, idx: number) => ({
+        id: q.id || `q_${idx}`,
+        number: idx + 1,
+        category: q.category || "Technical",
+        subcategory: q.competency || "Problem Solving",
+        question: q.question,
+        helperText: q.relevanceReason || "Answer using structured evidence.",
+        simulatedTranscript: "Candidate answer pending...",
+        expectedKeyPoints: q.expectedKeyPoints || [],
+        mockAnalysis: {
+          eyeContact: 85,
+          eyeStatus: "Good Focus",
+          facialEngagement: 88,
+          facialStatus: "Attentive",
+          posture: 92,
+          postureStatus: "Upright",
+          speechClarity: 87,
+          fluency: 84,
+          pace: "Normal Pace (140 wpm)",
+          tone: "Confident",
+          overallComm: 86,
+          confidence: 85,
+          engagement: "High",
+        },
+      }));
+      setActiveQuestions(mapped);
+    }
+  }, []);
+
+  const currentQuestion = activeQuestions[currentQuestionIndex] || MOCK_INTERVIEW_QUESTIONS_10[0];
 
   // Working Countdown Timer
   useEffect(() => {
@@ -38,13 +85,13 @@ export default function InterviewSessionPage() {
       setTimerSeconds((prev) => {
         if (prev > 0) return prev - 1;
         clearInterval(interval);
-        router.push("/interview/processing");
+        finalizeSessionAndNavigate();
         return 0;
       });
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [isPaused, router]);
+  }, [isPaused]);
 
   // Periodic Telemetry Fluctuation (+1% / -1% every 3s)
   useEffect(() => {
@@ -57,6 +104,86 @@ export default function InterviewSessionPage() {
     return () => clearInterval(interval);
   }, [isPaused]);
 
+  // Submit & Evaluate Current Question Answer
+  const handleAnswerSubmit = async (answerText: string) => {
+    const qId = currentQuestion.id;
+    setCandidateAnswers((prev) => ({ ...prev, [qId]: answerText }));
+    setIsEvaluating(true);
+
+    try {
+      const res = await fetch("/api/ai/evaluate-answer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          question: currentQuestion.question,
+          expectedKeyPoints: currentQuestion.expectedKeyPoints || [],
+          candidateAnswer: answerText,
+          role: sessionRole,
+        }),
+      });
+
+      const data = await res.json();
+      if (data.success && data.evaluation) {
+        setEvaluations((prev) => ({ ...prev, [qId]: data.evaluation }));
+      }
+    } catch (err) {
+      console.error("Evaluation error:", err);
+    } finally {
+      setIsEvaluating(false);
+    }
+  };
+
+  // Finalize Session Report and Navigate to Processing
+  const finalizeSessionAndNavigate = () => {
+    const evalList = Object.values(evaluations);
+    const avgScore =
+      evalList.length > 0
+        ? Math.round(
+            evalList.reduce(
+              (acc, curr) => acc + (curr.overallScore || curr.score || 80),
+              0
+            ) / evalList.length
+          )
+        : 84;
+
+    const strengthsList: string[] = evalList
+      .flatMap((e) => e.strengths || [])
+      .filter((s): s is string => Boolean(s));
+
+    const improvementsList: string[] = evalList
+      .flatMap((e) => e.improvements || [])
+      .filter((i): i is string => Boolean(i));
+
+    const resultReport: SessionResultReport = {
+      overallScore: avgScore,
+      breakdown: {
+        technical: Math.min(95, avgScore + 4),
+        communication: Math.min(95, avgScore),
+        problemSolving: Math.min(95, avgScore + 2),
+        behavioral: Math.min(95, avgScore - 2),
+      },
+      strengths:
+        strengthsList.length > 0
+          ? strengthsList
+          : [
+              "Structured technical explanations with clear reasoning",
+              "Effective use of real-world project context",
+            ],
+      areasForImprovement:
+        improvementsList.length > 0
+          ? improvementsList
+          : [
+              "Quantify business and performance impacts more specifically",
+              "Elaborate further on architectural trade-offs",
+            ],
+      questionEvaluations: evalList,
+      completedAt: new Date().toISOString(),
+    };
+
+    saveSessionResult(resultReport);
+    router.push("/interview/processing");
+  };
+
   // Question Navigation Handlers
   const handlePrevious = () => {
     if (currentQuestionIndex > 0) {
@@ -65,30 +192,45 @@ export default function InterviewSessionPage() {
   };
 
   const handleNext = () => {
-    if (currentQuestionIndex < MOCK_INTERVIEW_QUESTIONS_10.length - 1) {
+    if (currentQuestionIndex < activeQuestions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      router.push("/interview/processing");
+      finalizeSessionAndNavigate();
     }
   };
 
   const handleSkip = () => {
-    if (currentQuestionIndex < MOCK_INTERVIEW_QUESTIONS_10.length - 1) {
+    if (currentQuestionIndex < activeQuestions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
   };
 
   const handleConfirmEnd = () => {
     setIsEndModalOpen(false);
-    router.push("/interview/processing");
+    finalizeSessionAndNavigate();
   };
 
   // Base telemetry metrics with subtle periodic fluctuation
-  const eyeContact = Math.min(100, Math.max(50, currentQuestion.mockAnalysis.eyeContact + telemetryDelta));
-  const facialEngagement = Math.min(100, Math.max(50, currentQuestion.mockAnalysis.facialEngagement - telemetryDelta));
-  const posture = Math.min(100, Math.max(50, currentQuestion.mockAnalysis.posture));
-  const overallComm = Math.min(100, Math.max(50, currentQuestion.mockAnalysis.overallComm + telemetryDelta));
-  const confidence = Math.min(100, Math.max(50, currentQuestion.mockAnalysis.confidence));
+  const eyeContact = Math.min(
+    100,
+    Math.max(50, (currentQuestion.mockAnalysis?.eyeContact || 85) + telemetryDelta)
+  );
+  const facialEngagement = Math.min(
+    100,
+    Math.max(50, (currentQuestion.mockAnalysis?.facialEngagement || 88) - telemetryDelta)
+  );
+  const posture = Math.min(
+    100,
+    Math.max(50, currentQuestion.mockAnalysis?.posture || 90)
+  );
+  const overallComm = Math.min(
+    100,
+    Math.max(50, (currentQuestion.mockAnalysis?.overallComm || 86) + telemetryDelta)
+  );
+  const confidence = Math.min(
+    100,
+    Math.max(50, currentQuestion.mockAnalysis?.confidence || 85)
+  );
 
   return (
     <AppShell>
@@ -96,7 +238,7 @@ export default function InterviewSessionPage() {
         {/* Top Focused Header */}
         <InterviewHeader
           currentQuestionNumber={currentQuestion.number}
-          totalQuestions={MOCK_INTERVIEW_QUESTIONS_10.length}
+          totalQuestions={activeQuestions.length}
           timerSeconds={timerSeconds}
           isPaused={isPaused}
           onTogglePause={() => setIsPaused(!isPaused)}
@@ -113,16 +255,25 @@ export default function InterviewSessionPage() {
             {/* Current Question & Live Response Panel */}
             <QuestionPanel question={currentQuestion} isPaused={isPaused} />
 
+            {/* Candidate Text Response Input & Real AI Evaluation */}
+            <TextAnswerInput
+              questionId={currentQuestion.id}
+              onAnswerSubmit={handleAnswerSubmit}
+              isEvaluating={isEvaluating}
+              savedAnswer={candidateAnswers[currentQuestion.id] || ""}
+              evaluation={evaluations[currentQuestion.id] || null}
+            />
+
             {/* Question Progress Dots */}
             <QuestionProgress
               currentIndex={currentQuestionIndex}
-              totalQuestions={MOCK_INTERVIEW_QUESTIONS_10.length}
+              totalQuestions={activeQuestions.length}
             />
 
             {/* Question Navigation Controls */}
             <InterviewControls
               currentIndex={currentQuestionIndex}
-              totalQuestions={MOCK_INTERVIEW_QUESTIONS_10.length}
+              totalQuestions={activeQuestions.length}
               onPrevious={handlePrevious}
               onSkip={handleSkip}
               onNext={handleNext}
@@ -137,19 +288,19 @@ export default function InterviewSessionPage() {
             {/* Non-Verbal Camera Telemetry (Eye, Posture, Engagement) */}
             <CameraAnalysis
               eyeContact={eyeContact}
-              eyeStatus={currentQuestion.mockAnalysis.eyeStatus}
+              eyeStatus={currentQuestion.mockAnalysis?.eyeStatus || "Good Focus"}
               facialEngagement={facialEngagement}
-              facialStatus={currentQuestion.mockAnalysis.facialStatus}
+              facialStatus={currentQuestion.mockAnalysis?.facialStatus || "Attentive"}
               posture={posture}
-              postureStatus={currentQuestion.mockAnalysis.postureStatus}
+              postureStatus={currentQuestion.mockAnalysis?.postureStatus || "Upright"}
             />
 
             {/* Voice & Speech Analysis */}
             <VoiceAnalysis
-              speechClarity={currentQuestion.mockAnalysis.speechClarity}
-              fluency={currentQuestion.mockAnalysis.fluency}
-              pace={currentQuestion.mockAnalysis.pace}
-              tone={currentQuestion.mockAnalysis.tone}
+              speechClarity={currentQuestion.mockAnalysis?.speechClarity || 87}
+              fluency={currentQuestion.mockAnalysis?.fluency || 84}
+              pace={currentQuestion.mockAnalysis?.pace || "Normal Pace (140 wpm)"}
+              tone={currentQuestion.mockAnalysis?.tone || "Confident"}
               isPaused={isPaused}
             />
 
@@ -157,7 +308,7 @@ export default function InterviewSessionPage() {
             <PerformanceIndicators
               overallComm={overallComm}
               confidence={confidence}
-              engagement={currentQuestion.mockAnalysis.engagement}
+              engagement={currentQuestion.mockAnalysis?.engagement || "High"}
             />
           </div>
         </div>

@@ -62,6 +62,9 @@ export interface ResumeAnalysisData {
   strengths: string[];
   recommendations: string[];
   workExperienceYears: number;
+  education?: string[];
+  projects?: Array<{ title: string; tech: string[]; description: string }>;
+  potentialFollowUpAreas?: string[];
 }
 
 export const MOCK_USER_PROFILE: UserProfile = {
@@ -204,6 +207,12 @@ export const MOCK_RESUME_ANALYSIS: ResumeAnalysisData = {
     "Add quantified metric targets for STAR behavioral answers.",
     "Prepare concise anecdotes around cross-functional product design decisions.",
   ],
+  education: ["Bachelor of Science in Computer Science"],
+  projects: [
+    { title: "Chicago Yachts", tech: ["Next.js", "Tailwind"], description: "Luxury yacht booking portal" },
+    { title: "Event Hub", tech: ["React", "TypeScript"], description: "Interactive ticketing dashboard" },
+  ],
+  potentialFollowUpAreas: ["React Hydration & State", "Frontend Architecture", "STAR Framework Anecdotes"],
 };
 
 export const MOCK_INTERVIEW_QUESTIONS = [

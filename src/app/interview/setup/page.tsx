@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -20,11 +20,29 @@ import {
   Check,
   Zap,
   Play,
+  FileText,
+  RefreshCw,
 } from "lucide-react";
 import { AppShell } from "@/components/layout/app-shell";
+import { useToast } from "@/components/ui/toast";
+import { QuestionReviewMatrix } from "@/components/interview/question-review-matrix";
+import { AIQuestion, ProcessedDocument } from "@/lib/types";
+import {
+  loadSavedDocuments,
+  saveSessionConfig,
+  loadSavedProfileAnalysis,
+} from "@/lib/storage-service";
+import { globalKnowledgeBase } from "@/lib/knowledge-base";
+import { MOCK_INTERVIEW_QUESTIONS } from "@/lib/mock-data";
 
 export default function InterviewSetupPage() {
   const router = useRouter();
+  const { addToast } = useToast();
+
+  // Loaded documents & AI state
+  const [documents, setDocuments] = useState<ProcessedDocument[]>([]);
+  const [questions, setQuestions] = useState<AIQuestion[]>([]);
+  const [isGeneratingQuestions, setIsGeneratingQuestions] = useState(false);
 
   // Configuration States
   const [selectedRole, setSelectedRole] = useState("Frontend Developer");
@@ -49,11 +67,81 @@ export default function InterviewSetupPage() {
   const [prepStep, setPrepStep] = useState(0);
 
   const prepSteps = [
-    "Analyzing interview preferences...",
-    "Preparing personalized questions...",
+    "Analyzing profile & knowledge base documents...",
+    "Retrieving RAG passage evidence...",
+    "Finalizing personalized interview plan...",
     "Setting up interview environment...",
-    "Almost ready...",
   ];
+
+  useEffect(() => {
+    const loadedDocs = loadSavedDocuments();
+    setDocuments(loadedDocs);
+
+    // Initial question generation based on loaded state
+    generateQuestionsFromAi(loadedDocs, selectedRole, selectedDifficulty);
+  }, []);
+
+  const generateQuestionsFromAi = async (
+    docs: ProcessedDocument[],
+    role: string,
+    difficulty: string
+  ) => {
+    setIsGeneratingQuestions(true);
+    try {
+      const resumeDoc = docs.find((d) => d.role === "candidate_resume");
+      const jdDoc = docs.find((d) => d.role === "job_description");
+
+      // Retrieve top RAG passages for role & focus areas
+      const passages = globalKnowledgeBase.retrieveKnowledgeContext(
+        `${role} ${focusAreas.join(" ")}`,
+        docs.map((d) => d.id),
+        4
+      );
+
+      const res = await fetch("/api/ai/generate-questions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          role,
+          category: selectedType,
+          difficulty,
+          experienceLevel: "Mid Level",
+          candidateResumeText: resumeDoc?.extractedText || "",
+          jobDescriptionText: jdDoc?.extractedText || "",
+          knowledgePassages: passages.map((p) => `[${p.docName}]: ${p.content}`),
+          focusAreas,
+        }),
+      });
+
+      const data = await res.json();
+      if (data.success && Array.isArray(data.questions) && data.questions.length > 0) {
+        setQuestions(data.questions);
+        addToast(`Generated ${data.questions.length} personalized AI questions`, "success");
+      } else {
+        throw new Error("No questions returned");
+      }
+    } catch (err) {
+      console.error("Failed to generate AI questions:", err);
+      // Grounded fallback questions
+      const fallback = MOCK_INTERVIEW_QUESTIONS.map((q, idx) => ({
+        id: `q_setup_${idx}`,
+        number: idx + 1,
+        question: q.question,
+        category: (q.topic.includes("Behavioral") ? "Behavioral" : "Technical") as any,
+        difficulty: (difficulty || "Medium") as any,
+        competency: q.topic,
+        relevanceReason: `Targeted for ${role} role expectations.`,
+        evidence: "Candidate profile technical stack",
+        expectedKeyPoints: q.expectedKeyPoints,
+        suggestedFollowUps: ["What trade-offs did you encounter?"],
+        isApproved: true,
+        isCustom: false,
+      }));
+      setQuestions(fallback);
+    } finally {
+      setIsGeneratingQuestions(false);
+    }
+  };
 
   // Available Options Data
   const roleOptions = [
@@ -133,6 +221,21 @@ export default function InterviewSetupPage() {
 
   // Trigger Preparation Overlay Animation & Navigation
   const handleStartInterview = () => {
+    const approvedQuestions = questions.filter((q) => q.isApproved);
+    const finalQuestions = approvedQuestions.length > 0 ? approvedQuestions : questions;
+
+    saveSessionConfig({
+      role: selectedRole,
+      type: selectedType,
+      difficulty: selectedDifficulty,
+      duration: selectedDuration,
+      focusAreas,
+      cameraAnalysis,
+      voiceAnalysis,
+      questions: finalQuestions,
+      createdAt: new Date().toISOString(),
+    });
+
     setIsPreparing(true);
     setPrepStep(0);
 
@@ -504,56 +607,15 @@ export default function InterviewSetupPage() {
               </div>
             </div>
 
-            {/* QUESTION PREVIEW SECTION */}
-            <div className="p-6 rounded-2xl bg-white border border-stone-200/80 shadow-2xs space-y-4">
-              <div>
-                <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
-                  <HelpCircle className="w-4 h-4 text-slate-900" />
-                  Interview Question Sample Preview
-                </h3>
-                <p className="text-xs text-slate-500 font-normal mt-0.5">
-                  Illustrative sample topics based on your selected options
-                </p>
-              </div>
-
-              <div className="space-y-3 text-xs">
-                <div className="p-3.5 rounded-xl bg-stone-50/70 border border-stone-200 space-y-1">
-                  <div className="flex items-center gap-2">
-                    <span className="px-2 py-0.5 rounded font-bold bg-slate-900 text-white text-[10px]">
-                      Technical
-                    </span>
-                    <span className="text-slate-900 font-bold">Server-Side vs Client-Side Rendering</span>
-                  </div>
-                  <p className="text-[11px] text-slate-500 italic pt-0.5 font-normal">
-                    &ldquo;Can you explain the difference between server-side rendering and client-side rendering?&rdquo;
-                  </p>
-                </div>
-
-                <div className="p-3.5 rounded-xl bg-stone-50/70 border border-stone-200 space-y-1">
-                  <div className="flex items-center gap-2">
-                    <span className="px-2 py-0.5 rounded font-bold bg-slate-900 text-white text-[10px]">
-                      Project
-                    </span>
-                    <span className="text-slate-900 font-bold">Technical Architecture Trade-offs</span>
-                  </div>
-                  <p className="text-[11px] text-slate-500 italic pt-0.5 font-normal">
-                    &ldquo;Tell me about a challenging technical problem you faced while building one of your projects.&rdquo;
-                  </p>
-                </div>
-
-                <div className="p-3.5 rounded-xl bg-stone-50/70 border border-stone-200 space-y-1">
-                  <div className="flex items-center gap-2">
-                    <span className="px-2 py-0.5 rounded font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px]">
-                      Behavioral
-                    </span>
-                    <span className="text-slate-900 font-bold">Adaptability & Rapid Learning</span>
-                  </div>
-                  <p className="text-[11px] text-slate-500 italic pt-0.5 font-normal">
-                    &ldquo;Describe a situation where you had to learn a new technology quickly.&rdquo;
-                  </p>
-                </div>
-              </div>
-            </div>
+            {/* QUESTION REVIEW & SELECTION MATRIX */}
+            <QuestionReviewMatrix
+              questions={questions}
+              onQuestionsChange={setQuestions}
+              onRegenerateAll={() =>
+                generateQuestionsFromAi(documents, selectedRole, selectedDifficulty)
+              }
+              isLoading={isGeneratingQuestions}
+            />
           </div>
 
           {/* Sticky Summary Panel (4 cols) */}
